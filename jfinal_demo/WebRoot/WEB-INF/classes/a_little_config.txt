@@ -1,4 +1,0 @@
-jdbcUrl = jdbc:mysql://172.16.2.41/etl?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
-user = etl
-password = etl
-devMode = true
