@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.apache.lucene:lucene-suggest:5.2.1-transwarp">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-suggest/5.2.1-transwarp/lucene-suggest-5.2.1-transwarp.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-suggest/5.2.1-transwarp/lucene-suggest-5.2.1-transwarp-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-suggest/5.2.1-transwarp/lucene-suggest-5.2.1-transwarp-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

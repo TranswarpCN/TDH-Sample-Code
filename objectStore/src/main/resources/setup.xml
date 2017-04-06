@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="test/xsl" href="configuration.xsl"?>
+
+<configuration>
+    <property>
+        <name>hbase_table_name</name>
+        <value>picture53</value>
+    </property>
+    <property>
+        <name>region_num</name>
+        <value>4</value>
+    </property>
+    <property>
+        <name>mode</name>
+        <value>kerberos</value>
+        <!-- simple, kerbeos -->
+    </property>
+    <property>
+        <name>kerberos_with_keytab_user</name>
+        <value>hbase/tdh2@TDH</value>
+        <!-- 必须按照kerberos用户名/集群hostname@TDH填写 -->
+    </property>
+    <property>
+        <name>kerberos_keytab</name>
+        <value>E:\星环\hbase.keytab</value>
+        <!-- 必须写kerberos用户的keytab的绝对路径，
+        如果不填keytab选择kerberos密码，需要去Connector.java中注释30行，取消注释29行 -->
+    </property>
+    <property>
+        <name>kerberos_with_passwd_user</name>
+        <value>hbase</value>
+        <!-- kerberos认证在keytab和密码中至少选择一个 -->
+    </property>
+    <property>
+        <name>kerberos_passwd</name>
+        <value>123456</value>
+    </property>
+    <property>
+        <name>upload_dir</name>
+        <value>/mnt/disk1/p</value>
+        <!-- 已包含子文件夹，如多个目录，用 ; 分隔，注意Linux文件夹和Windows文件夹写法的区别 -->
+    </property>
+    <property>
+        <name>download_dir</name>
+        <value>E:\星环\任务\2016年11月28日</value>
+    </property>
+    <property>
+        <name>flush_size</name>
+        <value>134217728</value>
+    </property>
+    <property>
+        <name>thread_pool_size</name>
+        <!-- 线程池大小 -->
+        <value>2</value>
+    </property>
+    <property>
+        <name>thread_num</name>
+        <!-- 线程数量 -->
+        <value>2</value>
+    </property>
+</configuration>

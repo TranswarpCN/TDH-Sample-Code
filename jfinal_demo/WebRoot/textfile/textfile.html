@@ -1,0 +1,73 @@
+<#include "/common/_layout.html"/>
+<@layout>
+<h1>文本数据源&nbsp;&nbsp;
+<a href="/textfile/add">创建数据源</a>
+</h1>
+<div class="table_box">
+<form action="/textfile/run" method="post">
+	 <table class="list table table-striped">
+		<tbody>
+			<tr>
+				<th width="17%" style="text-align:center;">
+				   FTP&nbsp;&nbsp;<input type="radio" name="dataType" value="FTP" 
+				   <#if dataType?? && dataType=="FTP">checked</#if> >
+				 </th>
+				<th width="16%" style="text-align:center;">
+				  HTTP&nbsp;&nbsp;<input type="radio" name="dataType" value="HTTP" 
+				  <#if dataType?? && dataType=="HTTP">checked</#if> >
+				  </th>
+				<th width="16%" style="text-align:center;">
+				  SFTP&nbsp;&nbsp;<input type="radio" name="dataType" value="SFTP"
+				  <#if dataType?? && dataType=="SFTP">checked</#if>  >
+				  </th>
+				<th width="17%" style="text-align:center;">
+				  SOCKET&nbsp;&nbsp;<input type="radio" name="dataType" value="SOCKET" 
+				   <#if dataType?? && dataType=="SOCKET">checked</#if> >
+				  </th>
+				<th width="16%" style="text-align:center;">
+				       本地&nbsp;&nbsp;<input type="radio" name="dataType" value="LOCAL"
+				  <#if dataType?? && dataType=="LOCAL">checked</#if> >
+				 </th>
+				<th width="17%" style="text-align:center;">
+				  远程&nbsp;&nbsp;<input type="radio" name="dataType" value="REMOTE" 
+				  <#if dataType?? && dataType=="REMOTE">checked</#if> >
+				 </th>
+			</tr>
+		</tbody>
+	</table>
+	<table class="list table table-striped">
+	 <tr>
+		<td>IP&nbsp;&nbsp;&nbsp;&nbsp;地址: <input type="text" id="databaseAddress" name="databaseAddress" value="${databaseAddress!}"/></td>
+	    <td>用户名称: <input type="text" id="userName" name="userName" value="${userName!}"/></td>
+	</tr>
+	<tr>
+	    <td>数据目录 : <input type="text" id="databaseName" name="databaseName" value="${databaseName!}"/></td>
+		<td>用户密码: <input type="text" id="passWord" name="passWord" value="${passWord!}"/></td>
+	</tr>
+	<tr>
+		<td>文件编码：<input type="text" id ="fileChaset" name="fileChaset" value="${fileChaset!}" /></td>
+		<td>hdfs目录：<input type="text" id ="hdfsDir" name="hdfsDir" value="${hdfsDir!}" /></td>
+	</tr>
+	</table>
+	<table class="list table table-striped">
+	<tr>
+	   <td style="text-align:center;">是否保持目录结构</td>
+	   <td style="text-align:center;">是 <input type="radio" value="Y" name="strIskeepDirectoryStruct" 
+	   <#if strIskeepDirectoryStruct?? && strIskeepDirectoryStruct=="Y">checked</#if>/>
+	           否<input type="radio"name="strIskeepDirectoryStruct" value="N" <#if strIskeepDirectoryStruct?? && strIskeepDirectoryStruct=="N">checked</#if>/></td>
+	   <td style="text-align:center;">在HDFS上是否重写</td>
+	   <td style="text-align:center;">是<input type="radio" name="strIsOverWrite" value="Y"
+	   <#if strIsOverWrite?? && strIsOverWrite=="Y">checked</#if>/>
+	        否<input type="radio" name="strIsOverWrite" value="N" <#if strIsOverWrite?? && strIsOverWrite=="N">checked</#if>/></td>
+	 </tr>
+	 </table>
+	<div>
+		<label>&nbsp;</label>
+		<input value="提交" type="submit">
+	</div>
+</form>
+	<#include "/common/_paginate.html" />
+	<@paginate currentPage=blogPage.pageNumber totalPage=blogPage.totalPage actionUrl="/blog/" />
+</div>
+</@layout>
+	
