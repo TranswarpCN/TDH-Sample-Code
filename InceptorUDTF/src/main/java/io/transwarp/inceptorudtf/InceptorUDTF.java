@@ -10,10 +10,6 @@ import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorFactory;
 import org.apache.hadoop.hive.serde2.objectinspector.StructObjectInspector;
 import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorFactory;
 
-/**
- * Created by XKJ on 2016/11/21.
- */
-
 /*
  * UDTF(User-Defined Table-Generating Functions)  用来解决 输入一行输出多行(On-to-many maping) 的需求
  *
@@ -22,7 +18,6 @@ import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectIn
  * UDTF首先会调用initialize方法，此方法返回UDTF的返回行的信息（返回个数，类型）。
  * 初始化完成后，会调用process方法，对传入的参数进行处理，可以通过forword()方法把结果返回。
  * 最后close()方法调用，对需要清理的方法进行清理。
- *
  *
  * UDTF有两种使用方法，一种直接放到select后面，一种和lateral view一起使用。
  * 1：直接select中使用：select explode_map(properties) as (col1,col2) from src;
@@ -35,26 +30,20 @@ import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectIn
  * 下面是我写的一个用来切分”key:value;key:value;”这种字符串，返回结果为key, value两个字段.
  */
 public class InceptorUDTF extends GenericUDTF {
-
     public  String trim(String str){
         return str.trim();
     }
 
     public void close() throws HiveException {
-        // TODO Auto-generated method stub
-
     }
 
     public StructObjectInspector initialize(ObjectInspector[] arg0) throws UDFArgumentException {
-        // TODO Auto-generated method stub
         if (arg0.length != 1) {
             //throw new UDFArgumentLengthException("ExplodeMap takes only one argument");
         }
         if (arg0[0].getCategory() != ObjectInspector.Category.PRIMITIVE) {
             //throw new UDFArgumentException("ExplodeMap takes string as a parameter");
         }
-
-
         ArrayList<String> fieldNames = new ArrayList<String>();
         ArrayList<ObjectInspector> fieldOIs = new ArrayList<ObjectInspector>();
         fieldNames.add("col1");
@@ -66,7 +55,6 @@ public class InceptorUDTF extends GenericUDTF {
     }
 
     public void process(Object[] arg0) throws HiveException {
-        // TODO Auto-generated method stub
         String input = arg0[0].toString();
         String[] test = input.split(";");
         for (int i = 0; i < test.length; i++) {
@@ -78,6 +66,4 @@ public class InceptorUDTF extends GenericUDTF {
             }
         }
     }
-
-
 }

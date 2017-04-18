@@ -29,6 +29,7 @@ public class SuperPut {
     private static AtomicInteger count = new AtomicInteger();
     private static int num;
 
+    // 将文件夹中文件添加到队列中
     public static void addFiles(String[] folders) {
         String[] file_types = constant.FILE_TYPE_FILTER.split(",");
         for (String folder : folders) {
@@ -56,6 +57,7 @@ public class SuperPut {
         }
     }
 
+    // SuperPut作为Daemon进程
     private static class TaskAsDaemon implements Runnable {
         int num;
         Configuration configuration;
@@ -67,6 +69,7 @@ public class SuperPut {
             this.hdfs_dir = hdfs_dir;
         }
 
+        // 线程逻辑，一旦发现目标文件夹中新增文件，就准备上传
         @Override
         public void run() {
             while (true) {
@@ -130,6 +133,7 @@ public class SuperPut {
         }
     }
 
+    // SuperPut作为普通进程，一旦发现目标文件夹中新增文件，就准备上传
     private static class TaskAsUser implements Runnable {
         int num;
         Configuration configuration;
@@ -141,6 +145,7 @@ public class SuperPut {
             this.hdfs_dir = hdfs_dir;
         }
 
+        // 线程逻辑，
         @Override
         public void run() {
             while (blockingQueue.size() != 0) {
@@ -206,6 +211,7 @@ public class SuperPut {
         }
     }
 
+    // 负责监控目标文件夹是否有变化
     public static void go(int option) {
         if (option == 1) {
             hdfsProperties hdfsProperties = new hdfsProperties();
@@ -250,16 +256,17 @@ public class SuperPut {
                 }
             }
 
-//            executorService.shutdown();
+            // executorService.shutdown();
         } else {
             System.out.println("Parameter error, program will exit");
         }
     }
 
+    // 主函数
     public static void main(String... args) {
         try {
             System.out.println("Please input a parameter for SuperPut, 1 means daemon process, 2 means process exits when no file need to upload");
-//            int option = Integer.parseInt(args[0]);
+            // int option = Integer.parseInt(args[0]);
 
             Scanner scanner = new Scanner(System.in);
             int option = scanner.nextInt();

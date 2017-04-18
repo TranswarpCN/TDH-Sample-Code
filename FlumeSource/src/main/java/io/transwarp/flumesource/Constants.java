@@ -1,10 +1,6 @@
 package io.transwarp.flumesource;
 
-/**
- * Created by XKJ on 2016/11/21.
- */
 public final class Constants {
-
     // local file constants
     public static final String LOCAL_TYPE_VALUE = "local";
     public static final String ROOT_PATH_KEY = "rootPath";
@@ -33,5 +29,4 @@ public final class Constants {
     public static final String SFTP_PASSPHRASE = "passphrase";
 
     public static String SUFFIX = ".COMPLETED";
-
 }

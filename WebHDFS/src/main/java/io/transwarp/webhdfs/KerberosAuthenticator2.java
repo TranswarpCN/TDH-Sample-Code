@@ -30,41 +30,20 @@ import org.ietf.jgss.GSSManager;
 import org.ietf.jgss.GSSName;
 import org.ietf.jgss.Oid;
 
-/**
- * Created by XKJ on 2016/11/23.
- */
-
 public class KerberosAuthenticator2 implements Authenticator {
-
-    /**
-     * HTTP header used by the SPNEGO server endpoint during an authentication
-     * sequence.
-     */
+    // HTTP header used by the SPNEGO server endpoint during an authentication sequence.
     public static final String WWW_AUTHENTICATE = "WWW-Authenticate";
-
-    /**
-     * HTTP header used by the SPNEGO client endpoint during an authentication
-     * sequence.
-     */
+    // HTTP header used by the SPNEGO client endpoint during an authentication sequence.
     public static final String AUTHORIZATION = "Authorization";
-
-    /**
-     * HTTP header prefix used by the SPNEGO client/server endpoints during an
-     * authentication sequence.
-     */
+    // HTTP header prefix used by the SPNEGO client/server endpoints during an authentication sequence.
     public static final String NEGOTIATE = "Negotiate";
-
     private static final String AUTH_HTTP_METHOD = "OPTIONS";
-
     private boolean debug = true;
-
     private URL url;
     private HttpURLConnection conn;
     private Base64 base64;
-
     private String username;
     private String password;
-
     private String servicePrincipal;
 
     public KerberosAuthenticator2(String username, String password) {
@@ -264,9 +243,6 @@ public class KerberosAuthenticator2 implements Authenticator {
         this.debug = debug;
     }
 
-    /**
-     *
-     */
     private static class LoginConfig extends Configuration {
         private boolean debug;
 
@@ -288,12 +264,8 @@ public class KerberosAuthenticator2 implements Authenticator {
                     AppConfigurationEntry.LoginModuleControlFlag.REQUIRED,
                     options), };
         }
-
     }
 
-    /**
-     *
-     */
     private static class KerberosClientCallbackHandler implements
             CallbackHandler {
         private String username;
@@ -321,14 +293,10 @@ public class KerberosAuthenticator2 implements Authenticator {
                                     + ", but only NameCallback and PasswordCallback is supported");
                 }
             }
-
         }
-
     }
 
     public void setConnectionConfigurator(ConnectionConfigurator arg0) {
         // TODO Auto-generated method stub
     }
-
-
 }

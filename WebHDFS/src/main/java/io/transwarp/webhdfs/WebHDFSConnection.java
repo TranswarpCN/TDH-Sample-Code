@@ -7,18 +7,7 @@ import java.net.MalformedURLException;
 
 import org.apache.hadoop.security.authentication.client.AuthenticationException;
 
-/**
- * Created by XKJ on 2016/11/23.
- */
-
 public interface WebHDFSConnection {
-
-
-	/*
-	 * ========================================================================
-	 * GET
-	 * ========================================================================
-	 */
     /**
      * <b>GETHOMEDIRECTORY</b>
      *
@@ -57,9 +46,9 @@ public interface WebHDFSConnection {
      * @throws IOException
      * @throws AuthenticationException
      */
+
     public String getContentSummary(String path) throws MalformedURLException,
             IOException, AuthenticationException;
-
     /**
      * <b>LISTSTATUS</b>
      *
@@ -102,11 +91,6 @@ public interface WebHDFSConnection {
     public String getFileCheckSum(String path) throws MalformedURLException,
             IOException, AuthenticationException;
 
-	/*
-	 * ========================================================================
-	 * PUT
-	 * ========================================================================
-	 */
     /**
      * <b>CREATE</b>
      *
@@ -231,11 +215,6 @@ public interface WebHDFSConnection {
     public String setTimes(String path) throws MalformedURLException,
             IOException, AuthenticationException;
 
-	/*
-	 * ========================================================================
-	 * POST
-	 * ========================================================================
-	 */
     /**
      * curl -i -X POST
      * "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=APPEND[&buffersize=<INT>]"
@@ -250,11 +229,6 @@ public interface WebHDFSConnection {
     public String append(String path, InputStream is)
             throws MalformedURLException, IOException, AuthenticationException;
 
-	/*
-	 * ========================================================================
-	 * DELETE
-	 * ========================================================================
-	 */
     /**
      * <b>DELETE</b>
      *
@@ -269,6 +243,4 @@ public interface WebHDFSConnection {
      */
     public String delete(String path) throws MalformedURLException,
             IOException, AuthenticationException;
-
-
 }

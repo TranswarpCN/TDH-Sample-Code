@@ -5,14 +5,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.BitSet;
 
-/**
- * Created by XKJ on 2016/11/23.
- */
 public class URLUtil {
-
-    /**
-     * Array containing the safe characters set as defined by RFC 1738
-     */
+    // Array containing the safe characters set as defined by RFC 1738
     private static BitSet safeCharacters;
 
     private static final char[] hexadecimal = { '0', '1', '2', '3', '4', '5',
@@ -33,14 +27,12 @@ public class URLUtil {
         for (i = '0'; i <= '9'; i++) {
             safeCharacters.set(i);
         }
-
         // 'safe' rule
         safeCharacters.set('$');
         safeCharacters.set('-');
         safeCharacters.set('_');
         safeCharacters.set('.');
         safeCharacters.set('+');
-
         // 'extra' rule
         safeCharacters.set('!');
         safeCharacters.set('*');
@@ -48,9 +40,7 @@ public class URLUtil {
         safeCharacters.set('(');
         safeCharacters.set(')');
         safeCharacters.set(',');
-
-        // special characters common to http: file: and ftp: URLs ('fsegment'
-        // and 'hsegment' rules)
+        // special characters common to http: file: and ftp: URLs ('fsegment' and 'hsegment' rules)
         safeCharacters.set('/');
         safeCharacters.set(':');
         safeCharacters.set('@');
@@ -58,24 +48,12 @@ public class URLUtil {
         safeCharacters.set('=');
     }
 
-    /**
-     * Encode a path as required by the URL specification (<a
-     * href="http://www.ietf.org/rfc/rfc1738.txt"> RFC 1738</a>). This differs
-     * from <code>java.net.URLEncoder.encode()</code> which encodes according to
-     * the <code>x-www-form-urlencoded</code> MIME format.
-     *
-     * @param path
-     *            the path to encode
-     * @return the encoded path
-     */
     public static String encodePath(String path) {
         // stolen from org.apache.catalina.servlets.DefaultServlet ;)
-
         /**
          * Note: Here, ' ' should be encoded as "%20" and '/' shouldn't be
          * encoded.
          */
-
         int maxBytesPerChar = 10;
         StringBuffer rewrittenPath = new StringBuffer(path.length());
         ByteArrayOutputStream buf = new ByteArrayOutputStream(maxBytesPerChar);
@@ -119,6 +97,4 @@ public class URLUtil {
     public static void main(String[] args) {
         System.out.println(URLUtil.encodePath("zen/我的图片"));
     }
-
-
 }

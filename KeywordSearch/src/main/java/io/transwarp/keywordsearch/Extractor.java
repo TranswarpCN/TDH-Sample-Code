@@ -12,7 +12,7 @@ import org.xml.sax.SAXException;
 import java.io.*;
 
 public class Extractor {
-
+    // 获取文件夹
     private static File[] showFolder(String path) {
         File file = new File(path);
         return file.listFiles();
@@ -101,6 +101,7 @@ public class Extractor {
         }
     }
 
+    // 文档转化主函数
     public static void main(String... args) {
         String curPath = Constant.CURRENT_PATH;
         String dirPath = Constant.DIRECTORY_PATH;

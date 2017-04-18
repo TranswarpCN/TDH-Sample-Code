@@ -5,6 +5,7 @@ import org.apache.hadoop.conf.Configuration;
 public class Constant {
     private static Configuration configuration = new Configuration();
 
+    // 加载配置文件
     static {
         try {
             configuration.addResource("setup.xml");

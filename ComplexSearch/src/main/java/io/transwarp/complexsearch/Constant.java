@@ -5,6 +5,7 @@ import org.apache.hadoop.conf.Configuration;
 public class Constant {
     private static Configuration configuration = new Configuration();
 
+    // 加载配置文件
     static {
         try {
             configuration.addResource("setup.xml");
@@ -13,6 +14,7 @@ public class Constant {
         }
     }
 
+    // 定义常量
     static String DRIVER_NAME = configuration.get("driver_name");
     static String MODE = configuration.get("mode");
     static String SIMPLE_JDBC_URL = configuration.get("simple_jdbc_url");

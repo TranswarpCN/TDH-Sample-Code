@@ -7,6 +7,7 @@ public class SampleCode {
     public static int hostNum;
     public static int hostnth;
 
+    // 获取节点数量
     public static int getHostNums() {
         if (Constant.MODE.equals("kerberos")) {
             String[] conns = Constant.KERBEROS_JDBC_URL.split("|");
@@ -22,6 +23,7 @@ public class SampleCode {
         }
     }
 
+    // 主函数
     public static void main(String[] args) {
         hostNum = getHostNums();
         if (hostNum == 0) {

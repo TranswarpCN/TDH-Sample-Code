@@ -20,55 +20,28 @@ import org.apache.hadoop.security.authentication.client.Authenticator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-//import com.google.gson.Gson;
-
-
-/**
- * Created by XKJ on 2016/11/23.
- */
-
 public class PseudoWebHDFSConnection implements WebHDFSConnection{
 
-    /*
-    log
-     */
+    // log
     protected static final Logger logger = LoggerFactory
             .getLogger(PseudoWebHDFSConnection.class);
-   /*
-   http fs url
-    */
+    // http fs url
     private String httpfsUrl = WebHDFSConnectionFactory.DEFAULT_PROTOCOL
             + WebHDFSConnectionFactory.DEFAULT_HOST + ":"
             + WebHDFSConnectionFactory.DEFAULT_PORT;
-    /*
-    default user name
-     */
+    // default user name
     private String principal = WebHDFSConnectionFactory.DEFAULT_USERNAME;
-    /*
-    default user password
-     */
+    // default user password
     private String password = WebHDFSConnectionFactory.DEFAULT_PASSWORD;
-    /*
-    authenticate token
-     */
+    // authenticate token
     private Token token = new AuthenticatedURL.Token();
-    /*
-    Authenticated URL
-     */
+    // Authenticated URL
     private AuthenticatedURL authenticatedURL = new AuthenticatedURL(
             new PseudoAuthenticator(principal));
-    /*
-    construction function with nothing
-     */
+    // construction function with nothing
     public PseudoWebHDFSConnection() {
     }
 
-    /**
-     *
-     * @param httpfsUrl
-     * @param principal
-     * @param password
-     */
     public PseudoWebHDFSConnection(String httpfsUrl, String principal,
                                    String password) {
         this.httpfsUrl = httpfsUrl;
@@ -78,14 +51,6 @@ public class PseudoWebHDFSConnection implements WebHDFSConnection{
                 principal));
     }
 
-    /**
-     * @param srvUrl
-     *            the URl to authenticate against.
-     * @param princ
-     *
-     * @param passwd
-     *
-     */
     public static synchronized Token generateToken(String srvUrl, String princ,
                                                    String passwd) {
         AuthenticatedURL.Token newToken = new AuthenticatedURL.Token();
@@ -112,13 +77,6 @@ public class PseudoWebHDFSConnection implements WebHDFSConnection{
         return newToken;
     }
 
-    /**
-     * copy from input stream to output stream
-     * @param input
-     * @param result
-     * @return
-     * @throws IOException
-     */
     protected static long copy(InputStream input, OutputStream result)
             throws IOException {
         byte[] buffer = new byte[12288]; // 8K=8192 12K=12288 64K=
@@ -133,14 +91,6 @@ public class PseudoWebHDFSConnection implements WebHDFSConnection{
         return count;
     }
 
-    /**
-     * Report the result in JSON way
-     *
-     * @param conn
-     * @param input
-     * @return
-     * @throws IOException
-     */
     private static String result(HttpURLConnection conn, boolean input)
             throws IOException {
         StringBuffer sb = new StringBuffer();
@@ -165,10 +115,9 @@ public class PseudoWebHDFSConnection implements WebHDFSConnection{
         // Convert a Map into JSON string.
         //
         String json = toJson(result);
-//        Gson gson = new Gson();
-//        String json = gson.toJson(result);
-//        logger.info("json = " + json);
-
+        // Gson gson = new Gson();
+        // String json = gson.toJson(result);
+        // logger.info("json = " + json);
         //
         // Convert JSON string back to Map.
         //
@@ -181,15 +130,6 @@ public class PseudoWebHDFSConnection implements WebHDFSConnection{
         return json;
     }
 
-    /**
-     * 返回Json字符串
-     *
-     * @param jsonMap
-     *            返回结果
-     * @param jsonMap
-     *            需要返回的数据集
-     * @return Json字符串
-     */
     public static String toJson( Map<String, Object> jsonMap) {
         StringBuffer buffer = new StringBuffer();
 
@@ -206,9 +146,7 @@ public class PseudoWebHDFSConnection implements WebHDFSConnection{
         return buffer.toString();
     }
 
-    /**
-     * 判断token是否过期，过期重新生成一个
-     */
+    // 判断token是否过期，过期重新生成一个
     public void ensureValidToken() {
         if (!token.isSet()) { // if token is null
             token = generateToken(httpfsUrl, principal, password);
@@ -226,11 +164,6 @@ public class PseudoWebHDFSConnection implements WebHDFSConnection{
 
     }
 
-	/*
-	 * ========================================================================
-	 * GET
-	 * ========================================================================
-	 */
     /**
      * <b>GETHOMEDIRECTORY</b>
      *
@@ -398,11 +331,6 @@ public class PseudoWebHDFSConnection implements WebHDFSConnection{
         return resp;
     }
 
-	/*
-	 * ========================================================================
-	 * PUT
-	 * ========================================================================
-	 */
     /**
      * <b>CREATE</b>
      *
@@ -668,11 +596,6 @@ public class PseudoWebHDFSConnection implements WebHDFSConnection{
         return resp;
     }
 
-	/*
-	 * ========================================================================
-	 * POST
-	 * ========================================================================
-	 */
     /**
      * curl -i -X POST
      * "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=APPEND[&buffersize=<INT>]"
@@ -727,11 +650,6 @@ public class PseudoWebHDFSConnection implements WebHDFSConnection{
         return resp;
     }
 
-	/*
-	 * ========================================================================
-	 * DELETE
-	 * ========================================================================
-	 */
     /**
      * <b>DELETE</b>
      *

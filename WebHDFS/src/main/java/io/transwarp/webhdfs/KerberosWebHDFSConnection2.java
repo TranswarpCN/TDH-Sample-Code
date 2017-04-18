@@ -25,44 +25,26 @@ import org.apache.hadoop.security.ssl.SSLFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-//import com.google.gson.Gson;
-
-/**
- * Created by XKJ on 2016/11/23.
- */
-
 public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
-    /**
-     * logger
-     */
+    // logger
     protected static final Logger logger = LoggerFactory
             .getLogger(KerberosWebHDFSConnection2.class);
-   /** http fs url */
+    // http fs url
     private String httpfsUrl = WebHDFSConnectionFactory.DEFAULT_PROTOCOL
             + WebHDFSConnectionFactory.DEFAULT_HOST + ":"
             + WebHDFSConnectionFactory.DEFAULT_PORT;
-    /** default user name*/
+    // default user name
     private String principal = WebHDFSConnectionFactory.DEFAULT_USERNAME;
-    /** default password*/
+    // default password
     private String password = WebHDFSConnectionFactory.DEFAULT_PASSWORD;
-
     private Token token = new AuthenticatedURL.Token();
     static AuthenticatedURL.Token newToken = null;
-
     private static AuthenticatedURL authenticatedURL;
 
     public KerberosWebHDFSConnection2() {
     }
 
-
-    /**
-     *
-     * @param httpfsUrl
-     * @param principal
-     * @param password
-     */
-    public KerberosWebHDFSConnection2(String httpfsUrl, String principal,
-                                      String password)  {
+    public KerberosWebHDFSConnection2(String httpfsUrl, String principal, String password)  {
         this.httpfsUrl = httpfsUrl;
         this.principal = principal;
         this.password = password;
@@ -76,7 +58,6 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         ConnectionConfigurator connectionConfigurator = new SSLFactory(SSLFactory.Mode.CLIENT,conf);
         ka.setConnectionConfigurator(connectionConfigurator);
 
-
         try{
             URL url = new URL(httpfsUrl);
             ka.authenticate(url,newToken);
@@ -86,23 +67,14 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
 
 
          this.authenticatedURL = new AuthenticatedURL(ka,connectionConfigurator);
-
 //        this.authenticatedURL = new AuthenticatedURL(
 //                new KerberosAuthenticator2(principal, password));
     }
 
-    /**
-     *
-     * @param srvUrl
-     * @param princ
-     * @param passwd
-     * @return
-     */
     public static synchronized Token generateToken(String srvUrl, String princ,String passwd) {
 
 
         try {
-            /***/
 //            System.setProperty("java.security.krb5.realm", "TDH");
 //            System.setProperty("java.security.krb5.kdc","transwarp-8");
 
@@ -116,7 +88,6 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
 //            conn0.disconnect();
             conn.connect();
             conn.disconnect();
-
         } catch (Exception ex) {
             logger.error(ex.getMessage());
             logger.error("[" + princ + ":" + passwd + "]@" + srvUrl, ex);
@@ -124,18 +95,9 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
             // throws MalformedURLException, IOException,
             // AuthenticationException, InterruptedException
         }
-
         return newToken;
-
     }
 
-    /**
-     *
-     * @param input
-     * @param result
-     * @return
-     * @throws IOException
-     */
     protected static long copy(InputStream input, OutputStream result)
             throws IOException {
         byte[] buffer = new byte[12288]; // 8K=8192 12K=12288 64K=
@@ -150,14 +112,6 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return count;
     }
 
-    /**
-     * Report the result in JSON way
-     *
-     * @param conn
-     * @param input
-     * @return
-     * @throws IOException
-     */
     private static String result(HttpURLConnection conn, boolean input)
             throws IOException {
         StringBuffer sb = new StringBuffer();
@@ -200,16 +154,6 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return json;
     }
 
-    /**
-
-     * 返回Json字符串
-     *
-     * @param jsonMap
-     *            返回结果
-     * @param jsonMap
-     *            需要返回的数据集
-     * @return Json字符串
-     */
     public static String toJson( Map<String, Object> jsonMap) {
         StringBuffer buffer = new StringBuffer();
 //        if (success) {
@@ -252,11 +196,6 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
 
     }
 
-	/*
-	 * ========================================================================
-	 * GET
-	 * ========================================================================
-	 */
     /**
      * <b>GETHOMEDIRECTORY</b>
      *
@@ -445,11 +384,6 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-	/*
-	 * ========================================================================
-	 * PUT
-	 * ========================================================================
-	 */
     /**
      * <b>CREATE</b>
      *
@@ -509,13 +443,6 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-
-
-	/*
-	 * ========================================================================
-	 * PUT
-	 * ========================================================================
-	 */
     /**
      * <b>CREATE</b>
      *
@@ -793,11 +720,6 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-	/*
-	 * ========================================================================
-	 * POST
-	 * ========================================================================
-	 */
     /**
      * curl -i -X POST
      * "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=APPEND[&buffersize=<INT>]"
@@ -851,11 +773,6 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-	/*
-	 * ========================================================================
-	 * DELETE
-	 * ========================================================================
-	 */
     /**
      * <b>DELETE</b>
      *

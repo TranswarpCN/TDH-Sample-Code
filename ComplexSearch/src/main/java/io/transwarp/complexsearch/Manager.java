@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
 public class Manager {
     private static Logger log = LoggerFactory.getLogger(Manager.class);
 
+    // 线程逻辑
     private class Task implements Runnable {
         @Override
         public void run() {
@@ -26,6 +27,7 @@ public class Manager {
         }
     }
 
+    // 启动多线程查询
     public void go() {
         ExecutorService executorService = Executors.newFixedThreadPool(Integer.parseInt(Constant.THREAD_POOL_SIZE));
         for (int i = 0; i < Integer.parseInt(Constant.THREAD_NUM); ++i) {

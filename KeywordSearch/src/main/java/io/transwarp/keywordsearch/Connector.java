@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Connector {
+    // 加载驱动
     static {
         try {
             Class.forName(Constant.DRIVER_NAME);
@@ -13,6 +14,7 @@ public class Connector {
         }
     }
 
+    // 获取连接
     public static Connection getConnection() {
         Connection connection = null;
         try {
@@ -27,7 +29,6 @@ public class Connector {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return connection;
     }
 }

@@ -2,14 +2,9 @@ package io.transwarp.inceptorudf;
 
 import org.apache.hadoop.hive.ql.exec.UDF;
 
-/**
- * Created by 杨发林 on 2016/11/21.
- * Inceptor UDF 单行输入单行输出，主要解决的问题是单行数据的转换问题
- */
+// Inceptor UDF 单行输入单行输出，主要解决的问题是单行数据的转换问题
 public class InceptorUDF  extends UDF{
-    /*
-     * 将IP地址转换成数字表示
-     */
+    // 将IP地址转换成数字表示
     public static long evaluate(String ipNum) {
         String[] arr = ipNum.split("\\.");
         if (arr.length == 4) {
@@ -21,6 +16,4 @@ public class InceptorUDF  extends UDF{
             return 0l;
         }
     }
-
-
 }

@@ -1,16 +1,11 @@
 package io.transwarp.webhdfs;
 
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 
 import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.Session;
-
-/**
- * Created by XKJ on 2016/12/12.
- */
 
 public class RemoteShellTool {
 
@@ -20,13 +15,6 @@ public class RemoteShellTool {
     private String userName;
     private String password;
 
-    /**
-     *
-     * @param ipAddr
-     * @param userName
-     * @param password
-     * @param charset
-     */
     public RemoteShellTool(String ipAddr, String userName, String password,
                            String charset) {
         this.ipAddr = ipAddr;
@@ -37,22 +25,12 @@ public class RemoteShellTool {
         }
     }
 
-    /**
-     *
-     * @return
-     * @throws IOException
-     */
     public boolean login() throws IOException {
         conn = new Connection(ipAddr);
         conn.connect(); // 连接
         return conn.authenticateWithPassword(userName, password); // 认证
     }
 
-    /**
-     *
-     * @param cmds
-     * @return
-     */
     public String exec(String cmds) {
         InputStream in = null;
         String result = "";
@@ -71,12 +49,6 @@ public class RemoteShellTool {
         return result;
     }
 
-    /**
-     *
-     * @param in
-     * @param charset
-     * @return
-     */
     public String processStdout(InputStream in, String charset) {
 
         byte[] buf = new byte[1024];
@@ -110,5 +82,4 @@ public class RemoteShellTool {
 //        String result = tool.exec("kinit -kt hdfs.keytab hdfs ;curl -s --negotiate -u: \"http://172.16.2.96:50070/webhdfs/v1/?op=GETDELEGATIONTOKEN\"");
 //        System.out.print(result);
     }
-
 }

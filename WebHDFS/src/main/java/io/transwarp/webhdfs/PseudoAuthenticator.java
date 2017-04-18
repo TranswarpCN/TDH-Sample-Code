@@ -9,14 +9,8 @@ import org.apache.hadoop.security.authentication.client.AuthenticationException;
 import org.apache.hadoop.security.authentication.client.Authenticator;
 import org.apache.hadoop.security.authentication.client.ConnectionConfigurator;
 
-/**
- * Created by XKJ on 2016/11/23.
- */
 public class PseudoAuthenticator implements Authenticator{
-
-    /**
-     * Name of the additional parameter that carries the 'user.name' value.
-     */
+    // Name of the additional parameter that carries the 'user.name' value.
     public static final String USER_NAME = "user.name";
 
     private static final String USER_NAME_EQ = USER_NAME + "=";
@@ -54,14 +48,6 @@ public class PseudoAuthenticator implements Authenticator{
         AuthenticatedURL.extractToken(conn, token);
     }
 
-    /**
-     * Returns the current user name.
-     * <p/>
-     * This implementation returns the value of the Java system property
-     * 'user.name'
-     *
-     * @return the current user name.
-     */
     protected String getUserName() {
         return username != null ? username : System.getProperty("user.name");
     }

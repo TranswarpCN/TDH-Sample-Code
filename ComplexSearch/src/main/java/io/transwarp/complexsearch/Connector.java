@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Connector {
+    // 加载Inceptor的JDBC驱动
     static {
         try {
             Class.forName(Constant.DRIVER_NAME);
@@ -13,6 +14,7 @@ public class Connector {
         }
     }
 
+    // 创建Inceptor的JDBC连接
     public static Connection getConnection() {
         Connection connection = null;
         try {

@@ -1,52 +1,38 @@
-package io.transwarp.kafkaconsumer;
+package io.transwarp.kafkaConsumer;
 
+import org.apache.hadoop.conf.Configuration;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Properties;
-
-/**
- * Created by 杨发林 on 2016/11/21.
- */
 public class Constant {
+    private static Configuration configuration = new Configuration();
 
-    /*
-     * topic name
-     */
-    static String KAFKA_TOPIC_NAME;
-    /*
-     *  每个partition的线程数量
-     */
-    static String kAFKA_CONSUMER_THREAD_NUM;
-    /*
-     * 多个topic时，指定topic和对应的线程数量 如：t1:1;t2:5
-     */
-    private String TOPIC_LIST;
-    /*
-     * 构造consumer的map对象
-     */
-    static HashMap<String, Integer> map = new HashMap<String, Integer>();
-    /*
-     * 读取配置文件
-     */
-    static Properties p ;
-
-    private Constant(){
-        InputStream is = Constant.class.getClassLoader().getResourceAsStream("conf/kafka-set.xml");
-        p = new Properties();
+    // 加载配置
+    static {
         try {
-            p.load(is);
-            KAFKA_TOPIC_NAME = p.getProperty("kfk.topic");
-            kAFKA_CONSUMER_THREAD_NUM = p.getProperty("kfk.consumer.thread.num");
-            TOPIC_LIST = p.getProperty("topic.list");
-            String topic[] = TOPIC_LIST.split(";");
-            for(String t:topic){
-                map.put(t.split(":")[0],Integer.parseInt(t.split(":")[1]));
-            }
-        } catch (IOException e) {
+            configuration.addResource("setup.xml");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    // 定义配置常量
+    String ZK_CONNECT;
+    String GROUP_ID;
+    String TOPIC;
+    String THREAD_POOL_SIZE;
+    String THREAD_NUM;
+    String OPEN_KERBEROS;
+    String KERBEROS_USER;
+    String KEYTAB;
+
+    // 构造函数
+    public Constant() {
+        this.ZK_CONNECT = configuration.get("zk_connect");
+        this.GROUP_ID = configuration.get("group_id");
+        this.TOPIC = configuration.get("topic");
+        this.THREAD_POOL_SIZE = configuration.get("thread_pool_size");
+        this.THREAD_NUM = configuration.get("thread_num");
+        this.OPEN_KERBEROS = configuration.get("open_kerberos");
+        this.KERBEROS_USER = configuration.get("kerberos_user");
+        this.KEYTAB = configuration.get("keytab");
+    }
 }

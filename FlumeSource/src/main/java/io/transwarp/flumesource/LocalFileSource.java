@@ -1,7 +1,5 @@
 package io.transwarp.flumesource;
 
-import static org.apache.flume.source.SpoolDirectorySourceConfigurationConstants.IGNORE_PAT;
-
 import java.io.File;
 import java.io.FilenameFilter;
 import java.text.ParseException;
@@ -23,63 +21,30 @@ import org.apache.flume.source.AbstractSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-
-/**
- * Created by 杨发林 on 2016/11/21.
- */
-
-
 public class LocalFileSource extends AbstractSource implements Configurable,EventDrivenSource{
-
-    /*
-        输出日志
-     */
-    private static final Logger logger = LoggerFactory
-            .getLogger(LocalFileSource.class);
-
-    /*
-    本地文件路径
-     */
+    // 输出日志
+    private static final Logger logger = LoggerFactory.getLogger(LocalFileSource.class);
+    // 本地文件路径
     private String localPath;
-    /*
-        任务监控执行线程
-     */
+    // 任务监控执行线程
     private ScheduledExecutorService monitor;
-    /*
-        重复扫描次数
-     */
+    // 重复扫描次数
     private int DELAY;
-    /*
-      上次扫描的时间
-     */
+    // 上次扫描的时间
     private long lastCheckTime = 0;
-    /*
-    是否递归查询文件 默认是不递归查找
-     */
+    // 是否递归查询文件 默认是不递归查找
     private boolean isRecurse = false;
-    /*
-        每个批次文件的文件数量，目前还没有实现
-     */
+    // 每个批次文件的文件数量，目前还没有实现
     private int batchSize = 100;
-    /*
-        忽略的文件格式，将不上传
-     */
+    // 忽略的文件格式，将不上传
     private String ignorePatternStr;
-    /*
-        忽略的文件格式，将不上传
-     */
+    // 忽略的文件格式，将不上传
     private Pattern ignorePattern;
-    /*
-        文件后缀名 例如 .complete
-     */
+    // 文件后缀名 例如 .complete
     private String fileSuffix;
 
-    /*
-     实现Configurable的configure方法，获取配置参数
-     */
+    // 实现Configurable的configure方法，获取配置参数
     public void configure(Context context) {
-
         this.localPath = context.getString("local.path");
         this.DELAY = Integer.parseInt(context.getInteger("delay", 10) + "");
         this.isRecurse = context.getBoolean("recurse", false);
@@ -105,9 +70,10 @@ public class LocalFileSource extends AbstractSource implements Configurable,Even
         }
 
     }
+
     /*
-    启动source 启动任务调度
-    重写AbstractSource 的start方法
+     * 启动source 启动任务调度
+     * 重写AbstractSource 的start方法
      */
     @Override
     public synchronized void start() {
@@ -121,8 +87,8 @@ public class LocalFileSource extends AbstractSource implements Configurable,Even
     }
 
     /*
-    停止source 停止任务调度
-    重写AbstractSource 的stop方法
+     * 停止source 停止任务调度
+     * 重写AbstractSource 的stop方法
      */
     @Override
     public synchronized void stop() {
@@ -137,17 +103,10 @@ public class LocalFileSource extends AbstractSource implements Configurable,Even
         super.stop();
         logger.info("STOP LocalFileSource");
     }
-    /*
 
-     */
     private class DirMonitor implements Runnable {
-        /*
-
-         */
         private List<File> findFile(File path, boolean isRecurse) {
-            /*
-            递归查找文件
-             */
+            // 递归查找文件
             List<File> files = new ArrayList<File>();
             if (path.isDirectory()) {
                 File[] candidates = path.listFiles(new FilenameFilter() {
@@ -159,21 +118,16 @@ public class LocalFileSource extends AbstractSource implements Configurable,Even
                     }
                 });
                 for (int i = 0; i < candidates.length; i++) {
-
                     if (candidates[i].isDirectory() && isRecurse) {
                         files.addAll(findFile(candidates[i], isRecurse));
                     } else {
                         files.add(candidates[i]);
                     }
                 }
-
             }
-
             return files;
         }
-        /*
 
-         */
         public void run() {
             long currenTime = System.currentTimeMillis();
             List<File> needFiles = findFile(new File(localPath), isRecurse);
@@ -191,7 +145,6 @@ public class LocalFileSource extends AbstractSource implements Configurable,Even
                     event.getHeaders().put(Constants.ROOT_PATH_KEY, localPath);
                     events.add(event);
                 }
-
             }
 
             for (Iterator<Event> iterator = events.iterator(); iterator

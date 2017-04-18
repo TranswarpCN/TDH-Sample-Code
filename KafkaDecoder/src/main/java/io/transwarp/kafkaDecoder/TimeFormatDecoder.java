@@ -6,11 +6,10 @@ import kafka.utils.VerifiableProperties;
 import java.util.Date;
 
 /* kafka里的测试数据,倒数第三列为状态字段，倒数第二为日期字段，倒数第一为时间字段
-1,1,1,1,t1,t2,A,1451577600,0
-1,1,1,1,t1,t2,B,1451577600,1
-1,1,1,1,t1,t2,A,1451577600,2
-*/
-
+ * 1,1,1,1,t1,t2,A,1451577600,0
+ * 1,1,1,1,t1,t2,B,1451577600,1
+ * 1,1,1,1,t1,t2,A,1451577600,2
+ */
 public class TimeFormatDecoder extends ArrayDecoder<byte[]> {
     public TimeFormatDecoder(VerifiableProperties properties) {
         super(properties);
@@ -21,7 +20,6 @@ public class TimeFormatDecoder extends ArrayDecoder<byte[]> {
      * 1.输入类型为byte[]，输出类型byte[][]
      * 2.确保，输入kafka的数据符合该方法的解析格式；输出对应create stream指定的格式
      */
-
     @Override
     public byte[][] arrayFromBytes(byte[] msgBytes) {
         String msgString = new String(msgBytes);

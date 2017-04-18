@@ -16,6 +16,7 @@ public class Manager {
         this.hostId = hostId;
     }
 
+    // 线程对象
     private class Task implements Runnable {
         @Override
         public void run() {
@@ -29,6 +30,7 @@ public class Manager {
         }
     }
 
+    // 创建线程池，执行SQL
     public void go() {
         ExecutorService executorService = Executors.newFixedThreadPool(Integer.parseInt(Constant.THREAD_POOL_SIZE));
         for (int i = 0; i < Integer.parseInt(Constant.THREAD_NUM); ++i) {
