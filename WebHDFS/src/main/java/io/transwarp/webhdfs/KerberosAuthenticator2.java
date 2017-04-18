@@ -59,7 +59,7 @@ public class KerberosAuthenticator2 implements Authenticator {
         this.servicePrincipal = servicePrincipal;
     }
 
-    /**
+    /*
      * Performs SPNEGO authentication against the specified URL.
      * <p/>
      * If a token is given it does a NOP and returns the given token.
@@ -93,7 +93,7 @@ public class KerberosAuthenticator2 implements Authenticator {
         }
     }
 
-    /**
+    /*
      * If the specified URL does not support SPNEGO authentication, a fallback
      * {@link Authenticator} will be used.
      * <p/>
@@ -118,7 +118,7 @@ public class KerberosAuthenticator2 implements Authenticator {
         return negotiate;
     }
 
-    /**
+    /*
      * Implements the SPNEGO authentication sequence interaction using the
      * current default principal in the Kerberos cache (normally set via kinit).
      *

@@ -17,41 +17,27 @@ import java.util.Map;
  * Created by XKJ on 2016/12/12.
  */
 public class KerberosWebHDFSConnection implements WebHDFSConnection {
-
-    /**
-     * logger
-     */
-    protected static final Logger logger = LoggerFactory
-            .getLogger(KerberosWebHDFSConnection2.class);
-    /** http fs url */
+    // logger
+    protected static final Logger logger = LoggerFactory.getLogger(KerberosWebHDFSConnection2.class);
+    // http fs url
     private String httpfsUrl = WebHDFSConnectionFactory.DEFAULT_PROTOCOL
             + WebHDFSConnectionFactory.DEFAULT_HOST + ":"
             + WebHDFSConnectionFactory.DEFAULT_PORT;
-    /** default user name*/
+    // default user name
     private String principal = WebHDFSConnectionFactory.DEFAULT_USERNAME;
-    /** default password*/
+    // default password
     private String password = WebHDFSConnectionFactory.DEFAULT_PASSWORD;
-
     private String delegation = "";
     private RemoteShellTool tool;
     private String linuxUser = WebHDFSConnectionFactory.DEFAULT_LINUXUSER;
     private String linuxPassword = WebHDFSConnectionFactory.DEFAULT_LINUXPASSWORD;
     private String charset = WebHDFSConnectionFactory.DEFAULT_CHARSET;
-
-
     private AuthenticatedURL.Token token = new AuthenticatedURL.Token();
     private static AuthenticatedURL authenticatedURL  = new AuthenticatedURL();;
 
     public KerberosWebHDFSConnection() {
     }
 
-
-    /**
-     *
-     * @param httpfsUrl
-     * @param principal
-     * @param password
-     */
     public KerberosWebHDFSConnection(String httpfsUrl, String principal,
                                      String password)  {
         this.httpfsUrl = httpfsUrl;
@@ -61,13 +47,13 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
     }
 
     String  generateToken(){
-        tool = new RemoteShellTool(WebHDFSConnectionFactory.DEFAULT_LINUXHOST,linuxUser,
-                linuxPassword, charset);
+        tool = new RemoteShellTool(WebHDFSConnectionFactory.DEFAULT_LINUXHOST,linuxUser, linuxPassword, charset);
         String cmd0 = "kdestroy ;" +
                 "rm -rf "+principal+".keytab ;" +
                 "kadmin.local -q \"xst -norandkey -k "+principal+".keytab "+principal+"\"";
 
-        String cmd = "kinit -kt "+principal+".keytab "+principal+" ;curl -s --negotiate -u: \"http://172.16.2.96:50070/webhdfs/v1/?op=GETDELEGATIONTOKEN\"";
+        String cmd = "kinit -kt "+principal+".keytab "+principal+" ;" +
+                "curl -s --negotiate -u: \"http://172.16.2.96:50070/webhdfs/v1/?op=GETDELEGATIONTOKEN\"";
 
         tool.exec(cmd0);
         String result =  tool.exec(cmd);
@@ -75,13 +61,6 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return  token;
     }
 
-    /**
-     *
-     * @param input
-     * @param result
-     * @return
-     * @throws IOException
-     */
     protected static long copy(InputStream input, OutputStream result)
             throws IOException {
         byte[] buffer = new byte[12288]; // 8K=8192 12K=12288 64K=
@@ -96,14 +75,6 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return count;
     }
 
-    /**
-     * Report the result in JSON way
-     *
-     * @param conn
-     * @param input
-     * @return
-     * @throws IOException
-     */
     private static String result(HttpURLConnection conn, boolean input)
             throws IOException {
         StringBuffer sb = new StringBuffer();
@@ -125,46 +96,14 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         result.put("type", conn.getContentType());
         result.put("data", sb);
 
-        //
         // Convert a Map into JSON string.
-        //
         String json =toJson(result);
-
-//        Gson gson = new Gson();
-//        String json = gson.toJson(result);
-//        logger.info("json = " + json);
-
-        //
-        // Convert JSON string back to Map.
-        //
-        // Type type = new TypeToken<Map<String, Object>>(){}.getType();
-        // Map<String, Object> map = gson.fromJson(json, type);
-        // for (String key : map.keySet()) {
-        // System.out.println("map.get = " + map.get(key));
-        // }
 
         return json;
     }
 
-    /**
-
-     * 返回Json字符串
-     *
-     * @param jsonMap
-     *            返回结果
-     * @param jsonMap
-     *            需要返回的数据集
-     * @return Json字符串
-     */
     public static String toJson( Map<String, Object> jsonMap) {
         StringBuffer buffer = new StringBuffer();
-//        if (success) {
-//            buffer.append("{success:true");
-//        } else {
-//            buffer.append("{success:false");
-//        }
-
-
         if (jsonMap.size() > 0) {
             buffer.append("{");
             for (String key : jsonMap.keySet()) {
@@ -178,21 +117,13 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return buffer.toString();
     }
 
-    /**
-     *
-     */
     public void ensureValidToken() {
         if (delegation.equals("")) { // if token is null
             delegation = generateToken();
         }
     }
 
-	/*
-	 * ========================================================================
-	 * GET
-	 * ========================================================================
-	 */
-    /**
+    /*
      * <b>GETHOMEDIRECTORY</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/?op=GETHOMEDIRECTORY"
@@ -215,7 +146,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /**
+    /*
      * <b>OPEN</b>
      *
      * curl -i -L "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=OPEN
@@ -248,7 +179,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /**
+    /*
      * <b>GETCONTENTSUMMARY</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=GETCONTENTSUMMARY"
@@ -276,7 +207,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /**
+    /*
      * <b>LISTSTATUS</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=LISTSTATUS"
@@ -304,7 +235,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /**
+    /*
      * <b>GETFILESTATUS</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=GETFILESTATUS"
@@ -331,7 +262,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /**
+    /*
      * <b>GETFILECHECKSUM</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=GETFILECHECKSUM"
@@ -360,12 +291,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-	/*
-	 * ========================================================================
-	 * PUT
-	 * ========================================================================
-	 */
-    /**
+    /*
      * <b>CREATE</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=CREATE
@@ -423,7 +349,8 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
 
         return resp;
     }
-    /**
+
+    /*
      * <b>MKDIRS</b>
      *
      * curl -i -X PUT
@@ -453,7 +380,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /**
+    /*
      * <b>CREATESYMLINK</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/<PATH>?op=CREATESYMLINK
@@ -484,7 +411,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /**
+    /*
      * <b>RENAME</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/<PATH>?op=RENAME
@@ -515,7 +442,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /**
+    /*
      * <b>SETPERMISSION</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETPERMISSION
@@ -544,7 +471,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /**
+    /*
      * <b>SETOWNER</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETOWNER
@@ -573,7 +500,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /**
+    /*
      * <b>SETREPLICATION</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETREPLICATION
@@ -602,7 +529,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /**
+    /*
      * <b>SETTIMES</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETTIMES
@@ -631,12 +558,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-	/*
-	 * ========================================================================
-	 * POST
-	 * ========================================================================
-	 */
-    /**
+    /*
      * curl -i -X POST
      * "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=APPEND[&buffersize=<INT>]"
      *
@@ -689,12 +611,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-	/*
-	 * ========================================================================
-	 * DELETE
-	 * ========================================================================
-	 */
-    /**
+    /*
      * <b>DELETE</b>
      *
      * curl -i -X DELETE "http://<host>:<port>/webhdfs/v1/<path>?op=DELETE
@@ -725,7 +642,6 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    // Begin Getter & Setter
     public String getHttpfsUrl() {
         return httpfsUrl;
     }
@@ -749,6 +665,4 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
     public void setPassword(String password) {
         this.password = password;
     }
-    // End Getter & Setter
-
 }

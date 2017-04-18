@@ -3,7 +3,6 @@ package io.transwarp.webhdfs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -45,8 +44,8 @@ public class WebHDFSConnectionFactory {
     }
 
     // construction function with host,port,username,password,authType
-    public WebHDFSConnectionFactory(String host, int port, String username,
-                                    String password, String authType) {
+    public WebHDFSConnectionFactory(
+            String host, int port, String username, String password, String authType) {
         this.DEFAULT_LINUXHOST = host;
         this.host = host;
         this.port = port;
@@ -60,7 +59,7 @@ public class WebHDFSConnectionFactory {
     public WebHDFSConnection getConnection() {
         // TODO: use pool ...
         String httpfsUrl = DEFAULT_PROTOCOL + host + ":" + port;
-        if(connectionQueue.size()!=0){
+        if(connectionQueue.size() != 0) {
             try {
                 return connectionQueue.take();
             } catch (InterruptedException e) {
@@ -70,9 +69,8 @@ public class WebHDFSConnectionFactory {
         }
 
         if (webHDFSConnection == null) {
-            if (authenticationType.equalsIgnoreCase(AuthenticationType.KERBEROS
-                    .name())) {
-                for(int i=0;i<DEFAULT_CONNECTION_NUM;i++){
+            if (authenticationType.equalsIgnoreCase(AuthenticationType.KERBEROS.name())) {
+                for(int i=0;i<DEFAULT_CONNECTION_NUM;i++) {
                     try{
                         connectionQueue.put(new KerberosWebHDFSConnection(httpfsUrl,
                                 username, password));
@@ -81,20 +79,15 @@ public class WebHDFSConnectionFactory {
                         return null;
                     }
                 }
-//                webHDFSConnection = new KerberosWebHDFSConnection(httpfsUrl,
-//                        username, password);
-            } else if(authenticationType.equalsIgnoreCase(AuthenticationType.PSEUDO.name())) {
-                for(int i=0;i<DEFAULT_CONNECTION_NUM;i++){
-                    try{
-                        connectionQueue.put(new PseudoWebHDFSConnection(httpfsUrl,
-                                username, password));
-                    }catch(Exception e){
+            } else if (authenticationType.equalsIgnoreCase(AuthenticationType.PSEUDO.name())) {
+                for(int i = 0; i < DEFAULT_CONNECTION_NUM; i++) {
+                    try {
+                        connectionQueue.put(new PseudoWebHDFSConnection(httpfsUrl, username, password));
+                    } catch (Exception e) {
                         e.printStackTrace();
                         return null;
                     }
                 }
-//                webHDFSConnection = new PseudoWebHDFSConnection(httpfsUrl,
-//                        username, password);
             } else {
                 webHDFSConnection = null;
             }

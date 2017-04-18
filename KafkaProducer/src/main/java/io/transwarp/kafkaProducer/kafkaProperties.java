@@ -20,7 +20,6 @@ public class kafkaProperties {
         properties.put("serializer.class", constant.SERIALIZER_CLASS);
         properties.put("key.serializer.class", constant.KEY_SERIALIZER_CLASS);
         properties.put("request.required.acks", constant.REQUEST_REQUIRED_ACKS);
-
     }
 
     public Properties properties() {

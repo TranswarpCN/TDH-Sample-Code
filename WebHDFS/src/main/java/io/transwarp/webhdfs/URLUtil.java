@@ -49,11 +49,7 @@ public class URLUtil {
     }
 
     public static String encodePath(String path) {
-        // stolen from org.apache.catalina.servlets.DefaultServlet ;)
-        /**
-         * Note: Here, ' ' should be encoded as "%20" and '/' shouldn't be
-         * encoded.
-         */
+        // Note: Here, ' ' should be encoded as "%20" and '/' shouldn't be encoded.
         int maxBytesPerChar = 10;
         StringBuffer rewrittenPath = new StringBuffer(path.length());
         ByteArrayOutputStream buf = new ByteArrayOutputStream(maxBytesPerChar);

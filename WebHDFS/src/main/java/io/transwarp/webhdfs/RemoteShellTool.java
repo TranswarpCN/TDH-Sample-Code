@@ -8,7 +8,6 @@ import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.Session;
 
 public class RemoteShellTool {
-
     private Connection conn;
     private String ipAddr;
     private String charset = Charset.defaultCharset().toString();
@@ -64,17 +63,16 @@ public class RemoteShellTool {
     }
 
     public static void main(String[] args) {
-        RemoteShellTool tool = new RemoteShellTool("172.16.2.96", "root",
-                "123456", "utf-8");
+        RemoteShellTool tool = new RemoteShellTool("172.16.2.96", "root", "123456", "utf-8");
         String cmd0 = "kdestroy ;" +
                 "rm -rf hdfs.keytab ;" +
                 "kadmin.local -q \"xst -norandkey -k hdfs.keytab hdfs\"";
 
-        String cmd = "kinit -kt hdfs.keytab hdfs ;curl -s --negotiate -u: \"http://172.16.2.96:50070/webhdfs/v1/?op=GETDELEGATIONTOKEN\"";
+        String cmd = "kinit -kt hdfs.keytab hdfs ;" +
+                "curl -s --negotiate -u: \"http://172.16.2.96:50070/webhdfs/v1/?op=GETDELEGATIONTOKEN\"";
 
         tool.exec(cmd0);
         String result =  tool.exec(cmd);
-//        System.out.print(result);
         String token = result.substring(result.indexOf("\":\"")+3,result.indexOf("\"}}"));
         System.out.println(token);
 //        String result = tool.exec("kadmin.local -q \"xst -norandkey -k hdfs.keytab hdfs\"");

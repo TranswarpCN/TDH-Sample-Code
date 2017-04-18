@@ -35,7 +35,6 @@ public class TimeFormatDecoder extends ArrayDecoder<byte[]> {
 
             //状态字段映射到数量值
             char statusChar = msgArray[column_length - 3].charAt(0);
-            System.out.println("-----statusChar------" + statusChar + "----------");
             int statusValue;
             switch(statusChar) {
                 case 'A' :
@@ -54,8 +53,6 @@ public class TimeFormatDecoder extends ArrayDecoder<byte[]> {
             }
             stringBuilder.append(statusValue + sep);
             stringBuilder.append(ftime);
-            System.out.println("-----stringBuilder------" + stringBuilder.toString() +
-                    "----------");
         } catch (Throwable e) {
             e.printStackTrace();
         }

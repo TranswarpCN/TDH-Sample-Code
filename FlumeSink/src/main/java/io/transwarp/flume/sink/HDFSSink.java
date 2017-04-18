@@ -52,12 +52,12 @@ public class HDFSSink extends AbstractSink implements Configurable {
   // Retry forever.
   private static final int defaultTryCount = Integer.MAX_VALUE;
 
-  /**
+  /*
    * Default length of time we wait for blocking BucketWriter calls
    * before timing out the operation. Intended to prevent server hangs.
    */
   private static final long defaultCallTimeout = 10000;
-  /**
+  /*
    * Default number of threads available for tasks
    * such as append/open/close/flush with hdfs.
    * These tasks are done in a separate thread in

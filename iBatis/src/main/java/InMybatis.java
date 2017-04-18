@@ -16,9 +16,11 @@ public class InMybatis {
             e.printStackTrace();
         }
     }
+
     public static SqlSessionFactory getSession() {
         return sqlSessionFactory;
     }
+
     public static void main(String[] args) throws IOException {
         SqlSession session = sqlSessionFactory.openSession();
         try {

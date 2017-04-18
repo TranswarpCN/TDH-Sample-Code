@@ -8,9 +8,9 @@ import org.apache.spark.{SparkConf, SparkContext}
 object kmeans {
   def main(args: Array[String]): Unit = {
     val sc = init()
-    /*val input = "/home/data.txt"
-    val input = "E:\\星环\\shanghai2.txt"
-    */
+    /* val input = "/home/data.txt"
+     * val input = "E:\\星环\\shanghai2.txt"
+     */
     val input = "/home/kkkk/shanghai2.txt"
     run(sc, input, 15)
     print("test over!")

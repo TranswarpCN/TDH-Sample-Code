@@ -15,7 +15,7 @@ public class PseudoAuthenticator implements Authenticator{
 
     private static final String USER_NAME_EQ = USER_NAME + "=";
 
-    /**
+    /*
      * Performs simple authentication against the specified URL.
      * <p/>
      * If a token is given it does a NOP and returns the given token.

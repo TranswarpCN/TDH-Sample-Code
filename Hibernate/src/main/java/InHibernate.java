@@ -6,7 +6,9 @@ public class InHibernate {
     public static void main(String[] args) {
         String path = "hibernate.cfg.xml";
         Configuration cfg = new Configuration().configure(path);
+
         SessionFactory sessionFactory = cfg.buildSessionFactory();
+
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         User user = new User();
