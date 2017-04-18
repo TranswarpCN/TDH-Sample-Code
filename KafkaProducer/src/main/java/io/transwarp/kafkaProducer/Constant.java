@@ -5,6 +5,7 @@ import org.apache.hadoop.conf.Configuration;
 public class Constant {
     private static Configuration configuration = new Configuration();
 
+    // 加载配置文件
     static {
         try {
             configuration.addResource("setup.xml");
@@ -13,6 +14,7 @@ public class Constant {
         }
     }
 
+    // 定义常量
     String METADATA_BROKER_LIST;
     String SERIALIZER_CLASS;
     String KEY_SERIALIZER_CLASS;
