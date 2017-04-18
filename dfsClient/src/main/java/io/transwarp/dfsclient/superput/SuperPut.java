@@ -145,7 +145,7 @@ public class SuperPut {
             this.hdfs_dir = hdfs_dir;
         }
 
-        // 线程逻辑，
+        // 线程逻辑，一旦发现目标文件夹中新增文件，就准备上传
         @Override
         public void run() {
             while (blockingQueue.size() != 0) {
