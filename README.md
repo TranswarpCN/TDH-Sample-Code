@@ -16,6 +16,8 @@ This repository contains the example projects for componetnts on [Transwarp Data
 
 ## Project List
 
+You can read the [user-guide.txt](https://github.com/Transwarp-DE/Transwarp-Sample-Code/blob/master/user-guide.txt) for how to use the projects with a quick view.
+
 **BatchInsert.**  Example for batch insert data by Inceptor JDBC. 
 
 - [x] Kerberos Support
