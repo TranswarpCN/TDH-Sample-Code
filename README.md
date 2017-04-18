@@ -108,7 +108,7 @@ You can read the [user-guide.txt](https://github.com/Transwarp-DE/Transwarp-Samp
 
 ## Building and Running
 
-To build the code, you will first need to have installed Maven and Java. Then import projects to your favourite IDE. 
+To build the code, you will first need to have installed Maven and Java. Then import projects to your favourite IDE (If you use IntelliJ, every project isn't a IntelliJ Maven project's module, the whole project isn't IntelliJ project either. So you need import every project as existing module to your IntelliJ one by one). 
 
 The Transwarp Data Hub Maven repository, you can download [here](http://support.transwarp.cn/t/sdk-maven-tdh-repository/546).
 
