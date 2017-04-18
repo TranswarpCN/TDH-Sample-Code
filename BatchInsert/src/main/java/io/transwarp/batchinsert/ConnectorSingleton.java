@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
 // JDBC 初始化，获取连接数据库连接
 public class ConnectorSingleton {
     // 连接实例

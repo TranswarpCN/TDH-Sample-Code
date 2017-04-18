@@ -14,6 +14,7 @@ public class Constant {
         }
     }
 
+    // 定义常量
     String LOCAL_DATA_DIR;
     String HDFS_DATA_DIR;
     String COMPRESSION_SWITCHER;

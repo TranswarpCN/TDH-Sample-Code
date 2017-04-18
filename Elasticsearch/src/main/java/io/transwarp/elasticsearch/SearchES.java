@@ -58,7 +58,6 @@ public class SearchES {
 
             Terms terms = searchResponse.getAggregations().get("my_fieldA");
             for (Terms.Bucket bucket : terms.getBuckets()) {
-                StringBuilder stringBuilder = new StringBuilder();
                 String key = (String) bucket.getKey();
                 long count = bucket.getDocCount();
                 Sum sumAgg = bucket.getAggregations().get("my_sum_fieldB");
@@ -67,9 +66,8 @@ public class SearchES {
                 double avg = avgAgg.getValue();
                 Max maxAgg = bucket.getAggregations().get("my_max_fieldB");
                 double max = maxAgg.getValue();
-                stringBuilder.append("key is " + key + ", count is " + count +
+                System.out.println("key is " + key + ", count is " + count +
                         ", sum is " + sum + ", avg is " + avg + ", max is " + max);
-                System.out.println(stringBuilder.toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
