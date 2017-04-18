@@ -4,6 +4,16 @@ This repository contains the example projects for componetnts on [Transwarp Data
 
 ![](./png/tdh.png)
 
+* Transwarp's Distribution for Apache Hadoop for Enterprise has a five-layer architecture. Different applications provide customized support via flexible combination and efficient coordination among components.
+
+* Transwarp Inceptor in-memory analysis engine provides high-speed interactive SQL queries.
+
+* Transwarp Hyperbase real-time data processing engine, based on Apache HBase, is optimal for highly concurrent online business systems for enterprises.
+
+* Transwarp Stream real-time streaming processing engine, based on Apache Spark, possesses powerful stream processing abilities.
+
+* Transwarp Discover machine learning engine provides data mining via R.
+
 ## Project List
 
 **BatchInsert.**  Example for batch insert data by Inceptor JDBC.
@@ -42,11 +52,19 @@ This repository contains the example projects for componetnts on [Transwarp Data
 
 **ObjectStore.** Example for storing non-text files in Hyperbase with with multi-threading.
 
+**StreamDataCheck.** Example for black-list filter with StreamSQL UDF/UDTF. 
+
 **WebHDFS.** Example for Web HDFS Java API.
 
 **iBatis.** Example for Inceptor work with iBatis.
 
-**rJava.** Example for SparkR.
+**rJava.** Example for Spark Scala API.
+
+## Kerberos Support
+
+- [x] 已完成事项
+- [ ] 待办事项1
+- [ ] 待办事项2
 
 ## Building and Running
 
