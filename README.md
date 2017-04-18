@@ -1,5 +1,3 @@
-demo projects with Transwarp-Data-Hub
-
 # Transwarp Sample Code
 
 This repository contains the example projects for componetnts on [Transwarp Data Hub](http://www.transwarp.cn/product/tdh).
