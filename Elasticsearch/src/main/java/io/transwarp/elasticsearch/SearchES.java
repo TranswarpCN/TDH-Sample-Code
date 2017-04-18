@@ -85,7 +85,7 @@ public class SearchES {
                     new InetSocketTransportAddress(InetAddress.getByName("172.16.2.94"), 9300));
             SearchRequestBuilder searchRequestBuilder = transportClient.prepareSearch("sqd.es_start");
 
-//{"query": {"bool": {"must": [{"or": [{"wildcard": {"content": "*oracle*"}},{"wildcard": {"content": "*mysql*"}}]}],"must_not": [],"should": []}},"from": 0, "size": 10, "sort": [],"aggs": {}}
+            //{"query": {"bool": {"must": [{"or": [{"wildcard": {"content": "*oracle*"}},{"wildcard": {"content": "*mysql*"}}]}],"must_not": [],"should": []}},"from": 0, "size": 10, "sort": [],"aggs": {}}
             SearchResponse searchResponse = searchRequestBuilder.
                     setQuery(QueryBuilders.boolQuery()
                     .must(QueryBuilders.orQuery(QueryBuilders.wildcardQuery("content","*mysql*"),
@@ -105,6 +105,7 @@ public class SearchES {
         }
     }
 
+    // 多字段查询
     public static void multisearch() {
         try {
             Settings settings = Settings.settingsBuilder().put("cluster.name", "elasticsearch1").build();
@@ -126,6 +127,7 @@ public class SearchES {
         }
     }
 
+    // json查询
     public static void jsonquery() {
         try {
             Settings settings = Settings.settingsBuilder().put("cluster.name", "elasticsearch1").build();
@@ -166,6 +168,7 @@ public class SearchES {
         }
     }
 
+    // 通过json创建index
     public static void createByJson() {
         try {
             Settings settings = Settings.settingsBuilder().put("cluster.name", "elasticsearch1").build();
