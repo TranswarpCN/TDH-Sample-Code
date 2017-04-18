@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/InceptorUDF/src/main/main.iml" filepath="$PROJECT_DIR$/InceptorUDF/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FlumeSink/src/main/main1.iml" filepath="$PROJECT_DIR$/FlumeSink/src/main/main1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WebHDFS/src/main/main10.iml" filepath="$PROJECT_DIR$/WebHDFS/src/main/main10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dfsClient/src/main/main11.iml" filepath="$PROJECT_DIR$/dfsClient/src/main/main11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KeywordSearch/src/main/main12.iml" filepath="$PROJECT_DIR$/KeywordSearch/src/main/main12.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InceptorUDAF/src/main/main13.iml" filepath="$PROJECT_DIR$/InceptorUDAF/src/main/main13.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FlumeInterceptor/src/main/main14.iml" filepath="$PROJECT_DIR$/FlumeInterceptor/src/main/main14.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ObjectStore/src/main/main15.iml" filepath="$PROJECT_DIR$/ObjectStore/src/main/main15.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KafkaProducer/src/main/main16.iml" filepath="$PROJECT_DIR$/KafkaProducer/src/main/main16.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hibernate5/src/main/main17.iml" filepath="$PROJECT_DIR$/Hibernate5/src/main/main17.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BatchInsert/src/main/main18.iml" filepath="$PROJECT_DIR$/BatchInsert/src/main/main18.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ComplexSearch/src/main/main19.iml" filepath="$PROJECT_DIR$/ComplexSearch/src/main/main19.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MultiLocalMode/src/main/main2.iml" filepath="$PROJECT_DIR$/MultiLocalMode/src/main/main2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Elasticsearch/src/main/main20.iml" filepath="$PROJECT_DIR$/Elasticsearch/src/main/main20.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hibernate4/src/main/main21.iml" filepath="$PROJECT_DIR$/Hibernate4/src/main/main21.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KafkaDecoder/src/main/main22.iml" filepath="$PROJECT_DIR$/KafkaDecoder/src/main/main22.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hibernate/src/main/main3.iml" filepath="$PROJECT_DIR$/Hibernate/src/main/main3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StreamDataCheck/src/main/main4.iml" filepath="$PROJECT_DIR$/StreamDataCheck/src/main/main4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rJava/src/main/main5.iml" filepath="$PROJECT_DIR$/rJava/src/main/main5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KafkaConsumer/src/main/main6.iml" filepath="$PROJECT_DIR$/KafkaConsumer/src/main/main6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iBatis/src/main/main7.iml" filepath="$PROJECT_DIR$/iBatis/src/main/main7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FlumeSource/src/main/main8.iml" filepath="$PROJECT_DIR$/FlumeSource/src/main/main8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InceptorUDTF/src/main/main9.iml" filepath="$PROJECT_DIR$/InceptorUDTF/src/main/main9.iml" />
+    </modules>
+  </component>
+</project>

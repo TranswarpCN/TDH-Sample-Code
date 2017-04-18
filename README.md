@@ -102,7 +102,7 @@ This repository contains the example projects for componetnts on [Transwarp Data
 
 **rJava.** Example for Spark Scala API. 
 
-- [ ] Kerberos Support
+- [x] Kerberos Support
 
 ## Building and Running
 
