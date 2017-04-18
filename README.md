@@ -16,7 +16,7 @@ This repository contains the example projects for componetnts on [Transwarp Data
 
 ## Project List
 
-**BatchInsert.**  Example for batch insert data by Inceptor JDBC.
+**BatchInsert.**  Example for batch insert data by Inceptor JDBC. - [x] Kerber Support
 
 **ComplexSearch.** Example for fulltext search by Inceptor JDBC (index builded by Elasticsearch).
 
@@ -59,12 +59,6 @@ This repository contains the example projects for componetnts on [Transwarp Data
 **iBatis.** Example for Inceptor work with iBatis.
 
 **rJava.** Example for Spark Scala API.
-
-## Kerberos Support
-
-- [x] 已完成事项
-- [ ] 待办事项1
-- [ ] 待办事项2
 
 ## Building and Running
 
