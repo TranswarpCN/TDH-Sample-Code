@@ -30,15 +30,15 @@ You can read the [user-guide.txt](https://github.com/Transwarp-DE/Transwarp-Samp
 
 - [ ] Kerberos Support
 
-**FlumeInterceptor.** Example for Flume's interceptor, contanins row and column (regex) filter. 
+**FlumeInterceptor.** Example for Flume Interceptor, contanins row and column (regex) filter. 
 
 - [x] Kerberos Support
 
-**FlumeSink.** Example for Flume's sink, synchronising folders and files. 
+**FlumeSink.** Example for Flume Sink, synchronising folders and files. 
 
 - [x] Kerberos Support
 
-**FlumeSource.** Example for Flume's source. 
+**FlumeSource.** Example for Flume Source. 
 
 - [x] Kerberos Support
 
@@ -66,15 +66,15 @@ You can read the [user-guide.txt](https://github.com/Transwarp-DE/Transwarp-Samp
 
 - [x] Kerberos Support
 
-**KafkaConsumer.** Example for Kafka consumer with multi-threading. 
+**KafkaConsumer.** Example for Kafka Consumer with multi-threading. 
 
 - [x] Kerberos Support
 
-**KafkaDecoder.** Example for Kafka decoder. 
+**KafkaDecoder.** Example for Kafka Decoder. 
 
 - [x] Kerberos Support
 
-**KafkaProducer.** Example for Kafka producer with multi-threading. 
+**KafkaProducer.** Example for Kafka Producer with multi-threading. 
 
 - [x] Kerberos Support
 
@@ -86,7 +86,7 @@ You can read the [user-guide.txt](https://github.com/Transwarp-DE/Transwarp-Samp
 
 - [x] Kerberos Support
 
-**ObjectStore.** Example for storing non-text files in Hyperbase with with multi-threading. 
+**ObjectStore.** Example for storing non-text (such as image, video, etc) files in Hyperbase with with multi-threading. 
 
 - [x] Kerberos Support
 
