@@ -12,14 +12,18 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class SQLOperation {;
+public class SQLOperation {
+
     // inceptor连接实例
     static ConnectorPools connectorPools;
     static Connection connection = connectorPools.getConnection();
+
     // 获取文件列表
     static List<File> filesQueue = new LinkedList<File>();
+
     // 读取文件的线程
     static WorkThread workThread[] = new WorkThread[Integer.parseInt(Constant.readFileThreadNum)];
+
     // 含有占位符的sql插入语句，例如 insert into table1(....) values(?,?,?,?...)
     static String insertSql = "";
 
@@ -27,10 +31,10 @@ public class SQLOperation {;
         connectorPools.backConnection(connection);
     }
 
-    /*
-     * sql :insert into tableName1(f1,f2...) as select ..as struct, from
-     * tableName2
-     * sql:需要执行的sql语句
+    /**
+     * 向Hyperbase批量插入
+     * @param sql 需要执行的sql语句，如insert into tableName1(f1,f2...) as select ..as struct, from tableName2
+     * @return 是否执行成功
      */
     public Boolean HyperbaseBatchInsertWithSql(String sql) {
         try {
@@ -42,18 +46,18 @@ public class SQLOperation {;
         return true;
     }
 
-    /*
+    /**
      * 构造建表语句，并返回；构造sql插入语句
-     *
-     * tableName:目标表的名称
-     * structFields:组成hbase rowkey的字段，rowkey的顺序按照这个数组的顺序
-     * fields:当前表的所有字段组成的数组
-     * isStruct:rowkey是否需要指定字段，不指定默认按照第一个字段作为rowkey
-     * return:返回表的创建语句
+     * @param tableName 目标表的名称
+     * @param structFields 组成hbase rowkey的字段，rowkey的顺序按照这个数组的顺序
+     * @param fields 当前表的所有字段组成的数组
+     * @param isStruct 是否需要指定字段，不指定默认按照第一个字段作为rowkey
+     * @return 返回表的创建语句
      */
-    private String GenerateTableSql(
-            String tableName, String[] structFields, String[] fields, Boolean isStruct) {
-        String sqlString = isStruct ? "create table if not exists %s (key struct< %s >,%s ) stored by \'org.apache.hadoop.hive.hbase.HBaseStorageHandler\' ;"
+    private String GenerateTableSql(String tableName, String[] structFields,
+                                    String[] fields, Boolean isStruct) {
+        String sqlString = isStruct ?
+                "create table if not exists %s (key struct< %s >,%s ) stored by \'org.apache.hadoop.hive.hbase.HBaseStorageHandler\' ;"
                 : "create table if not exists %s ( %s ) stored by \'org.apache.hadoop.hive.hbase.HBaseStorageHandler\' ;";
         String inSql = "insert into  table(%s) valuse(%s);";
         String struct = "";
@@ -83,16 +87,16 @@ public class SQLOperation {;
         return sqlString;
     }
 
-    /*
-     *  将给定的文件插入到表
-     * tableName:目标表的名称
-     * inputPath:文件存放路径，本地路径，可以是文件也可以是目录
-     * fields:当前表的所有字段组成的数组
-     * isCreateTable:是否需要创建表
-     * return:是否执行成功
+    /**
+     * 将给定的文件插入到表
+     * @param tableName 目标表的名称
+     * @param inputPath 文件存放路径，本地路径，可以是文件也可以是目录
+     * @param fields 当前表的所有字段组成的数组
+     * @param isCreateTable 是否需要创建表
+     * @return 是否执行成功
      */
-    public Boolean HyperbaseBatchInsertWithoutStructRowKey(
-            String tableName, String inputPath, String[] fields, Boolean isCreateTable) {
+    public Boolean HyperbaseBatchInsertWithoutStructRowKey(String tableName, String inputPath,
+                                                           String[] fields, Boolean isCreateTable) {
         if (!isExitsTable(tableName) && !isCreateTable) {
             System.out.println("table is not exists");
             System.exit(1);
@@ -108,17 +112,18 @@ public class SQLOperation {;
         return true;
     }
 
-    /*
+    /**
      * 将给定的文件插入到表
-     * tableName:目标表的名称
-     * inputPath:文件存放路径，本地路径，可以是文件也可以是目录
-     * structFields:组成hbase rowkey的字段，rowkey的顺序按照这个数组的顺序
-     * fields:当前表的所有字段组成的数组
-     * isCreateTable:是否需要创建表
-     * return:是否执行成功
+     * @param tableName 目标表的名称
+     * @param inputPath 文件存放路径，本地路径，可以是文件也可以是目录
+     * @param structFields 组成hbase rowkey的字段，rowkey的顺序按照这个数组的顺序
+     * @param fields 当前表的所有字段组成的数组
+     * @param isCreateTable 是否需要创建表
+     * @return 是否执行成功
      */
-    public Boolean HyperbaseBatchInsertWithStructRowKey(
-            String tableName, String inputPath, String[] structFields, String[] fields, Boolean isCreateTable) {
+    public Boolean HyperbaseBatchInsertWithStructRowKey(String tableName, String inputPath,
+                                                        String[] structFields, String[] fields,
+                                                        Boolean isCreateTable) {
         if (!isExitsTable(tableName) && !isCreateTable) {
             System.out.println("table is not exists");
             System.exit(1);
@@ -136,9 +141,10 @@ public class SQLOperation {;
         return false;
     }
 
-    /*
+    /**
      * 启动多个线程读取文件，将内容加入到inceptor
-     * inputPath:文件存放路径，本地路径，可以是文件也可以是目录
+     * @inputPath 文件存放路径，本地路径，可以是文件也可以是目录
+     * @return 是否执行成功
      */
     private Boolean BatchInsert(String inputPath) {
         filesQueue = getFilesList(new File(inputPath));
@@ -149,9 +155,9 @@ public class SQLOperation {;
         return true;
     }
 
-    /*
+    /**
      * 回去文件列表
-     * srcFile 文件对象
+     * @srcFile 文件对象
      */
     private static List<File> getFilesList(File srcFile) {
         List<File> fileList = new LinkedList<File>();
@@ -164,9 +170,9 @@ public class SQLOperation {;
         return fileList;
     }
 
-    /*
+    /**
      * 判断给定的表名臣在数据库中是否存在
-     * tableName:表名称
+     * @tableName 表名称
      */
     private static Boolean isExitsTable(String tableName) {
 
@@ -185,11 +191,12 @@ public class SQLOperation {;
     private class WorkThread extends Thread {
         // 该工作线程是否有效，用于结束该工作线程
         private boolean isRunning = true;
-        // 关键所在啊，如果任务队列不空，则取出任务执行，若任务队列空，则等待
+
+        // 关键所在，如果任务队列不空，则取出任务执行，若任务队列空，则等待
         @Override
         public void run() {
             File file;
-            while (isRunning) {// 注意，若线程无效则自然结束run方法，该线程就没用了
+            while (isRunning) {// 注意，若线程无效则自然结束run方法
                 synchronized (filesQueue) {
                     while (isRunning && filesQueue.isEmpty()) {// 队列为空
                         try {
@@ -255,6 +262,7 @@ public class SQLOperation {;
                 }
             }
         }
+
         // 停止工作，让该线程自然执行完run方法，自然结束
         public void stopWorker() {
             isRunning = false;
