@@ -5,6 +5,8 @@
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -219,5 +221,6 @@
     <orderEntry type="library" name="Maven: org.hdrhistogram:HdrHistogram:2.1.6" level="project" />
     <orderEntry type="library" name="Maven: com.twitter:jsr166e:1.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hbase:hbase-bson:0.98.6-transwarp-tdh463" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.hive:hive-jdbc:0.12.0-transwarp-tdh463" level="project" />
   </component>
 </module>
