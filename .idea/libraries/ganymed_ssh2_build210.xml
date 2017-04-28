@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="ganymed-ssh2-build210">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/WebHDFS/src/main/resources/conf/ganymed-ssh2-build210.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
