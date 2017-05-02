@@ -2,7 +2,9 @@ package io.transwarp.batchinsert;
 
 import org.apache.hadoop.conf.Configuration;
 
-// 在Batchinsert实例中需要使用的常量，在配置文件set.xml中应该有相应的配置
+/**
+ * 在Batchinsert实例中需要使用的常量，在配置文件set.xml中应该有相应的配置
+ */
 public final  class Constant {
     // 配置文件类，主要是set.xml等
     public static Configuration configuration = new Configuration();
@@ -31,7 +33,9 @@ public final  class Constant {
     // 设置读取文件的线程数量
     public static String readFileThreadNum;;
 
-    // 构造函数，加载配置文件，初始化常量变量
+    /**
+     * 构造函数，加载配置文件，初始化常量变量
+     */
     private  Constant() {
         configuration.addResource("conf/set.xml");
         driverName = configuration.get("driverName");
@@ -47,7 +51,9 @@ public final  class Constant {
         readFileThreadNum = configuration.get("readFileThreadNum");
     }
 
-    // 连接模式的枚举
+    /**
+     * 连接模式的枚举
+     */
     public static enum MODE {
         KERBEROS("kerberos", 1), LDAP("ldap", 2), SIMPLE("simple", 3);
         String key;

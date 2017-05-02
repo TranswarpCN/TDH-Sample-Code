@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -128,7 +127,7 @@
     <orderEntry type="module-library">
       <library name="Maven: jdk.tools:jdk.tools:1.6">
         <CLASSES>
-          <root url="jar://C:/Program Files/Java/jdk1.7.0_80/lib/tools.jar!/" />
+          <root url="jar://C:/Program Files/Java/jdk1.8.0_91/jre/../lib/tools.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -144,7 +143,6 @@
     <orderEntry type="library" name="Maven: com.jcraft:jsch:0.1.50" level="project" />
     <orderEntry type="library" name="Maven: com.jcraft:jzlib:1.1.2" level="project" />
     <orderEntry type="library" name="Maven: net.java.dev.jna:jna:4.2.1" level="project" />
-    <orderEntry type="library" name="Maven: dnw:dnw:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: sk:sk:0.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-mapreduce-client-core:2.5.2-transwarp-tdh463" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-yarn-common:2.5.2-transwarp-tdh463" level="project" />
@@ -196,6 +194,7 @@
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-mapreduce-client-jobclient:2.5.2-transwarp-tdh463" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-hdfs:2.5.2-transwarp-tdh463" level="project" />
     <orderEntry type="library" name="Maven: commons-daemon:commons-daemon:1.0.13" level="project" />
+    <orderEntry type="library" name="Maven: dnw:dnw:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hbase:hbase-client:0.98.6-transwarp-tdh463" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty:3.6.2.Final" level="project" />
     <orderEntry type="library" name="Maven: org.elasticsearch:elasticsearch-client:2.0.0-transwarp-tdh463" level="project" />

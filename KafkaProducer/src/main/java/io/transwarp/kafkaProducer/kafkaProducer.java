@@ -15,12 +15,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class kafkaProducer {
-    // 构造函数
     public kafkaProducer() {
 
     }
 
-    // 创建线程
+    /**
+     * 创建线程
+     */
     private static class Task implements Runnable {
         int num;
         String topic;
@@ -38,7 +39,9 @@ public class kafkaProducer {
 
         @Override
         @SuppressWarnings("unchecked")
-        // 线程读取文件列表
+        /**
+         * 线程读取文件列表
+         */
         public void run() {
             try {
                 while (fileList.size() != 0) {
@@ -71,7 +74,9 @@ public class kafkaProducer {
         }
     }
 
-    // 读取配置文件，创建线程池，运行线程
+    /**
+     * 读取配置文件，创建线程池，运行线程
+     */
     public void go() {
         Constant constant = new Constant();
         kafkaProperties kafkaProperties = new kafkaProperties();
@@ -95,7 +100,11 @@ public class kafkaProducer {
         executorService.shutdown();
     }
 
-    // 创建列表，将多个文件夹下文件以及子文件夹文件加入列表中
+    /**
+     * 创建列表，将多个文件夹下文件以及子文件夹文件加入列表中
+     * @param folders 文件夹集合
+     * @return 文件列表
+     */
     private static CopyOnWriteArrayList<String> addFiles(String[] folders) {
         CopyOnWriteArrayList<String> fileList = new CopyOnWriteArrayList<>();
         for (String folder : folders) {
@@ -114,7 +123,11 @@ public class kafkaProducer {
         return fileList;
     }
 
-    // 辅助函数，读取子文件夹中文件
+    /**
+     * 辅助函数，读取子文件夹中文件
+     * @param root 文件夹名
+     * @param fileList 文件列表
+     */
     private static void recursion(String root, CopyOnWriteArrayList<String> fileList) {
         File file = new File(root);
         File[] subFile = file.listFiles();

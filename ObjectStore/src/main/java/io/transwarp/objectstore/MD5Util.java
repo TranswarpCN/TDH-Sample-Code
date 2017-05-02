@@ -15,7 +15,11 @@ public class MD5Util {
         }
     }
 
-    // md5函数
+    /**
+     * md5函数
+     * @param s 需要转换的字符串
+     * @return md5转换后的字符串
+     */
     public static String md5crypt(String s) {
         System.out.println(s);
         digestBuffer.setLength(0);
@@ -26,7 +30,11 @@ public class MD5Util {
         return digestBuffer.toString();
     }
 
-    // 辅助函数
+    /**
+     * 辅助函数
+     * @param one byte
+     * @return 转换后的字符串
+     */
     private static String toHex(byte one) {
         String HEX = "0123456789ABCDEF";
         char[] result = new char[2];

@@ -15,14 +15,19 @@ public class DownloadData {
     private Constant constant;
     private MD5Util md5Util;
 
-    // 构造函数
+    /**
+     * 构造函数
+     */
     public DownloadData() {
         connector = new Connector();
         constant = new Constant();
         configuration = connector.getConfiguration();
     }
 
-    // 获取文件
+    /**
+     * 获取文件
+     * @param fileName 文件名
+     */
     public void getFile(String fileName) {
         try {
             HTable hTable = new HTable(configuration, constant.HBASE_TABLE_NAME);

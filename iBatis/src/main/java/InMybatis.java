@@ -21,6 +21,7 @@ public class InMybatis {
         return sqlSessionFactory;
     }
 
+    // 主函数
     public static void main(String[] args) throws IOException {
         SqlSession session = sqlSessionFactory.openSession();
         try {

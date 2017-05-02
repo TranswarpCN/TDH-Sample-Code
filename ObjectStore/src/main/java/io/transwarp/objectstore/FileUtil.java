@@ -6,7 +6,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class FileUtil {
-    // file转byte
+    /**
+     * file转byte
+     * @param file 文件名
+     * @return byte文件
+     * @throws Exception 文件为空
+     */
     public static byte[] file2Byte(File file) throws Exception {
         FileInputStream fileInputStream = new FileInputStream(file);
         byte[] data = new byte[fileInputStream.available()];
@@ -15,7 +20,13 @@ public class FileUtil {
         return data;
     }
 
-    // byte转file
+    /**
+     * byte转file
+     * @param bytes byte文件
+     * @param path 文件路径
+     * @param fileName 文件名
+     * @return 文件
+     */
     public static File byte2File(byte[] bytes, String path, String fileName) {
         if (bytes == null)
             return null;

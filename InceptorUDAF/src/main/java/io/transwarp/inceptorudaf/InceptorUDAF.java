@@ -4,7 +4,7 @@ import org.apache.hadoop.hive.ql.exec.UDAF;
 import org.apache.hadoop.hive.ql.exec.UDAFEvaluator;
 
 public class InceptorUDAF extends UDAF {
-    /*
+    /**
      * 在实现inceptor自定UDAF时，必须要继承UDAF类，还有在这个类的内部实现一个内部类实现接口UDAFEvaluator
      * 并重写里面的四个主要的方法
      *
@@ -36,7 +36,7 @@ public class InceptorUDAF extends UDAF {
         public void init() {
             partial = null;
         }
-        /*
+        /**
          * 需要实现的第一个方法
          * 每个需要处理的处理都要经过的处理
          */
@@ -72,7 +72,7 @@ public class InceptorUDAF extends UDAF {
             return true;
         }
 
-        /*
+        /**
          * 需要实现的第二个方法
          * 返回部分结果
          */
@@ -80,7 +80,7 @@ public class InceptorUDAF extends UDAF {
             return partial;
         }
 
-        /*
+        /**
          * 需要实现的第三个方法
          * 将两个部分结果合并
          */
@@ -115,7 +115,7 @@ public class InceptorUDAF extends UDAF {
             return true;
         }
 
-        /*
+        /**
          * 需要实现的第四个方法
          * 构造返回值类型，返回结果
          */

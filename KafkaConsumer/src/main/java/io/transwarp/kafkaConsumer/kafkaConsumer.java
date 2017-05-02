@@ -18,7 +18,9 @@ public class kafkaConsumer {
 
     }
 
-    // 线程对象
+    /**
+     * 线程对象
+     */
     private static class Task implements Runnable {
         KafkaStream<byte[], byte[]> stream;
 
@@ -36,7 +38,9 @@ public class kafkaConsumer {
         }
     }
 
-    // 创建线程池，执行kafka消费者
+    /**
+     * 创建线程池，执行kafka消费者
+     */
     public void go() {
         Constant constant = new Constant();
         kafkaProperties kafkaProperties = new kafkaProperties();

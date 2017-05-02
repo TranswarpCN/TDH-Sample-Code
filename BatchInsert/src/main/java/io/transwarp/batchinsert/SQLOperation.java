@@ -13,7 +13,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SQLOperation {
-
     // inceptor连接实例
     static ConnectorPools connectorPools;
     static Connection connection = connectorPools.getConnection();
@@ -142,8 +141,8 @@ public class SQLOperation {
     }
 
     /**
-     * 启动多个线程读取文件，将内容加入到inceptor
-     * @inputPath 文件存放路径，本地路径，可以是文件也可以是目录
+     * 启动多个线程读取文件，将内容加入到Inceptor
+     * @param inputPath 文件存放路径，本地路径，可以是文件也可以是目录
      * @return 是否执行成功
      */
     private Boolean BatchInsert(String inputPath) {
@@ -157,7 +156,7 @@ public class SQLOperation {
 
     /**
      * 回去文件列表
-     * @srcFile 文件对象
+     * @param srcFile 文件对象
      */
     private static List<File> getFilesList(File srcFile) {
         List<File> fileList = new LinkedList<File>();
@@ -172,7 +171,7 @@ public class SQLOperation {
 
     /**
      * 判断给定的表名臣在数据库中是否存在
-     * @tableName 表名称
+     * @param tableName 表名称
      */
     private static Boolean isExitsTable(String tableName) {
 
@@ -187,18 +186,21 @@ public class SQLOperation {
         return false;
     }
 
-    // 工作进程
+    /**
+     * 工作进程
+     */
     private class WorkThread extends Thread {
         // 该工作线程是否有效，用于结束该工作线程
         private boolean isRunning = true;
-
         // 关键所在，如果任务队列不空，则取出任务执行，若任务队列空，则等待
         @Override
         public void run() {
             File file;
-            while (isRunning) {// 注意，若线程无效则自然结束run方法
+            while (isRunning) {
+                // 注意，若线程无效则自然结束run方法
                 synchronized (filesQueue) {
-                    while (isRunning && filesQueue.isEmpty()) {// 队列为空
+                    while (isRunning && filesQueue.isEmpty()) {
+                        // 队列为空
                         try {
                             filesQueue.wait(20);
                         } catch (InterruptedException e) {
@@ -206,14 +208,15 @@ public class SQLOperation {
                         }
                     }
                     if (!filesQueue.isEmpty())
-                        readFileByLine(filesQueue.remove(0));// 取出任务
+                        // 取出任务
+                        readFileByLine(filesQueue.remove(0));
                 }
             }
         }
 
-        /*
+        /**
          * 按照行读取文件
-         * flie:需要读取的文件
+         * @param file 需要读取的文件
          */
         public void readFileByLine(File file) {
 
@@ -263,13 +266,19 @@ public class SQLOperation {
             }
         }
 
-        // 停止工作，让该线程自然执行完run方法，自然结束
+        /**
+         * 停止工作，让该线程自然执行完run方法，自然结束
+         */
         public void stopWorker() {
             isRunning = false;
         }
     }
 
-    // 执行一条有返回值的sql
+    /**
+     * 执行一条有返回值的sql
+     * @param sql
+     * @return sql返回值或者Null
+     */
     public ResultSet Select(String sql) {
         try {
             return connection.createStatement().executeQuery(sql);

@@ -8,7 +8,7 @@ import java.net.MalformedURLException;
 import org.apache.hadoop.security.authentication.client.AuthenticationException;
 
 public interface WebHDFSConnection {
-    /*
+    /**
      * <b>GETHOMEDIRECTORY</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/?op=GETHOMEDIRECTORY"
@@ -20,7 +20,7 @@ public interface WebHDFSConnection {
      */
     public String getHomeDirectory() throws MalformedURLException, IOException,AuthenticationException;
 
-    /*
+    /**
      * <b>OPEN</b>
      *
      * curl -i -L "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=OPEN
@@ -35,7 +35,7 @@ public interface WebHDFSConnection {
     public String open(String path, OutputStream os)
             throws MalformedURLException, IOException, AuthenticationException;
 
-    /*
+    /**
      * <b>GETCONTENTSUMMARY</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=GETCONTENTSUMMARY"
@@ -49,7 +49,7 @@ public interface WebHDFSConnection {
     public String getContentSummary(String path) throws MalformedURLException,
             IOException, AuthenticationException;
 
-    /*
+    /**
      * <b>LISTSTATUS</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=LISTSTATUS"
@@ -63,7 +63,7 @@ public interface WebHDFSConnection {
     public String listStatus(String path) throws MalformedURLException,
             IOException, AuthenticationException;
 
-    /*
+    /**
      * <b>GETFILESTATUS</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=GETFILESTATUS"
@@ -77,7 +77,7 @@ public interface WebHDFSConnection {
     public String getFileStatus(String path) throws MalformedURLException,
             IOException, AuthenticationException;
 
-    /*
+    /**
      * <b>GETFILECHECKSUM</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=GETFILECHECKSUM"
@@ -91,7 +91,7 @@ public interface WebHDFSConnection {
     public String getFileCheckSum(String path) throws MalformedURLException,
             IOException, AuthenticationException;
 
-    /*
+    /**
      * <b>CREATE</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=CREATE
@@ -108,7 +108,7 @@ public interface WebHDFSConnection {
     public String create(String path, InputStream is)
             throws MalformedURLException, IOException, AuthenticationException;
 
-    /*
+    /**
      * <b>MKDIRS</b>
      *
      * curl -i -X PUT
@@ -123,7 +123,7 @@ public interface WebHDFSConnection {
     public String mkdirs(String path) throws MalformedURLException,
             IOException, AuthenticationException;
 
-    /*
+    /**
      * <b>CREATESYMLINK</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/<PATH>?op=CREATESYMLINK
@@ -139,7 +139,7 @@ public interface WebHDFSConnection {
     public String createSymLink(String srcPath, String destPath)
             throws MalformedURLException, IOException, AuthenticationException;
 
-    /*
+    /**
      * <b>RENAME</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/<PATH>?op=RENAME
@@ -155,7 +155,7 @@ public interface WebHDFSConnection {
     public String rename(String srcPath, String destPath)
             throws MalformedURLException, IOException, AuthenticationException;
 
-    /*
+    /**
      * <b>SETPERMISSION</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETPERMISSION
@@ -170,7 +170,7 @@ public interface WebHDFSConnection {
     public String setPermission(String path) throws MalformedURLException,
             IOException, AuthenticationException;
 
-    /*
+    /**
      * <b>SETOWNER</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETOWNER
@@ -185,7 +185,7 @@ public interface WebHDFSConnection {
     public String setOwner(String path) throws MalformedURLException,
             IOException, AuthenticationException;
 
-    /*
+    /**
      * <b>SETREPLICATION</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETREPLICATION
@@ -200,7 +200,7 @@ public interface WebHDFSConnection {
     public String setReplication(String path) throws MalformedURLException,
             IOException, AuthenticationException;
 
-    /*
+    /**
      * <b>SETTIMES</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETTIMES
@@ -215,7 +215,7 @@ public interface WebHDFSConnection {
     public String setTimes(String path) throws MalformedURLException,
             IOException, AuthenticationException;
 
-    /*
+    /**
      * curl -i -X POST
      * "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=APPEND[&buffersize=<INT>]"
      *
@@ -229,7 +229,7 @@ public interface WebHDFSConnection {
     public String append(String path, InputStream is)
             throws MalformedURLException, IOException, AuthenticationException;
 
-    /*
+    /**
      * <b>DELETE</b>
      *
      * curl -i -X DELETE "http://<host>:<port>/webhdfs/v1/<path>?op=DELETE

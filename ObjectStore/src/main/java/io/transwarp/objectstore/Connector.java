@@ -36,17 +36,25 @@ public class Connector {
         }
     }
 
-    // 获取HyperbaseAdmin对象
+    /**
+     * 获取HyperbaseAdmin对象
+     * @return HyperbaseAdmin对象
+     */
     public HyperbaseAdmin getHyperbaseAdmin() {
         return hyperbaseAdmin;
     }
 
-    // 获取配置
+    /**
+     * 获取配置
+     * @return 配置信息
+     */
     public Configuration getConfiguration() {
         return configuration;
     }
 
-    // 关闭HBaseAdmin/HyperbaseAdmin对象
+    /**
+     * 关闭HBaseAdmin/HyperbaseAdmin对象
+     */
     public void close() {
         try {
             hBaseAdmin.close();
@@ -56,7 +64,9 @@ public class Connector {
         }
     }
 
-    // 检测是否连接上Hyperbase
+    /**
+     * 检测是否连接上Hyperbase
+     */
     public void checkConnection() {
         try {
             if (!hBaseAdmin.tableExists("xxxxxxxx")) {

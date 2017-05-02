@@ -14,7 +14,10 @@ public class Connector {
         }
     }
 
-    // 获取连接
+    /**
+     * 获取连接
+     * @return JDBC连接
+     */
     public static Connection getConnection() {
         Connection connection = null;
         try {

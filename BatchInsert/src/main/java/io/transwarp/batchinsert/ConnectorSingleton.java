@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-// JDBC 初始化，获取连接数据库连接
+/**
+ * JDBC初始化，获取连接数据库连接
+ */
 public class ConnectorSingleton {
     // 连接实例
     private static ConnectorSingleton uniqueInstanceConnectorSingleton = null;
@@ -17,15 +19,21 @@ public class ConnectorSingleton {
         }
     }
 
-    // 获取JDBC连接实例
-    public static  ConnectorSingleton getConnectorSingleton(){
+    /**
+     * 获取JDBC连接实例
+     * @return JDBC连接
+     */
+    public static ConnectorSingleton getConnectorSingleton(){
         if (uniqueInstanceConnectorSingleton == null){
             uniqueInstanceConnectorSingleton = new ConnectorSingleton();
         }
         return uniqueInstanceConnectorSingleton;
     }
 
-    // 通过连接实例获取一个数据库连接
+    /**
+     * 通过连接实例获取一个数据库连接
+     * @return JDBC连接
+     */
     public Connection getConnection(){
         Connection connection = null;
         try {

@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.URISyntaxException;
 
 public class SampleCode {
+    // 主函数
     public static void main(String[] args) throws IOException, URISyntaxException, AuthenticationException {
         WebHDFSConnectionFactory webHDFSConnectionFactory = new WebHDFSConnectionFactory("172.16.2.96",50070, "hdfs",
                 "123456", WebHDFSConnectionFactory.AuthenticationType.KERBEROS.name());

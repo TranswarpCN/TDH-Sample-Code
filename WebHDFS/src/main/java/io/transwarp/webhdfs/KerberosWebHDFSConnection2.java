@@ -159,7 +159,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
 
     }
 
-    /*
+    /**
      * <b>GETHOMEDIRECTORY</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/?op=GETHOMEDIRECTORY"
@@ -233,7 +233,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-    /*
+    /**
      * <b>GETCONTENTSUMMARY</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=GETCONTENTSUMMARY"
@@ -261,7 +261,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-    /*
+    /**
      * <b>LISTSTATUS</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=LISTSTATUS"
@@ -289,7 +289,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-    /*
+    /**
      * <b>GETFILESTATUS</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=GETFILESTATUS"
@@ -316,7 +316,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-    /*
+    /**
      * <b>GETFILECHECKSUM</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=GETFILECHECKSUM"
@@ -345,7 +345,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-    /*
+    /**
      * <b>CREATE</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=CREATE
@@ -404,7 +404,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-    /*
+    /**
      * <b>CREATE</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=CREATE
@@ -473,7 +473,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-    /*
+    /**
      * <b>MKDIRS</b>
      *
      * curl -i -X PUT
@@ -503,7 +503,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-    /*
+    /**
      * <b>CREATESYMLINK</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/<PATH>?op=CREATESYMLINK
@@ -534,7 +534,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-    /*
+    /**
      * <b>RENAME</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/<PATH>?op=RENAME
@@ -565,7 +565,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-    /*
+    /**
      * <b>SETPERMISSION</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETPERMISSION
@@ -594,7 +594,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-    /*
+    /**
      * <b>SETOWNER</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETOWNER
@@ -623,7 +623,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-    /*
+    /**
      * <b>SETREPLICATION</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETREPLICATION
@@ -652,7 +652,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-    /*
+    /**
      * <b>SETTIMES</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETTIMES
@@ -681,7 +681,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-    /*
+    /**
      * curl -i -X POST
      * "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=APPEND[&buffersize=<INT>]"
      *
@@ -734,7 +734,7 @@ public class KerberosWebHDFSConnection2 implements WebHDFSConnection{
         return resp;
     }
 
-    /*
+    /**
      * <b>DELETE</b>
      *
      * curl -i -X DELETE "http://<host>:<port>/webhdfs/v1/<path>?op=DELETE

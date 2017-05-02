@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Executor {
-    // 创建Hyperbase表
+    /**
+     * 创建Hyperbase表
+     * @param connection JDBC连接
+     */
     public static void createHBaseTable(Connection connection) {
         try {
             Statement statement = connection.createStatement();
@@ -20,7 +23,10 @@ public class Executor {
         }
     }
 
-    // 测试SQL查询
+    /**
+     * 测试SQL查询
+     * @param connection JDBC连接
+     */
     public static void testSearch(Connection connection) {
         try {
             Statement statement = connection.createStatement();

@@ -13,9 +13,6 @@ import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by XKJ on 2016/12/12.
- */
 public class KerberosWebHDFSConnection implements WebHDFSConnection {
     // logger
     protected static final Logger logger = LoggerFactory.getLogger(KerberosWebHDFSConnection2.class);
@@ -123,12 +120,12 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         }
     }
 
-    /*
+    /**
      * <b>GETHOMEDIRECTORY</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/?op=GETHOMEDIRECTORY"
      *
-     * @return
+     * @return homedirectory
      * @throws MalformedURLException
      * @throws IOException
      * @throws AuthenticationException
@@ -146,7 +143,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /*
+    /**
      * <b>OPEN</b>
      *
      * curl -i -L "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=OPEN
@@ -179,7 +176,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /*
+    /**
      * <b>GETCONTENTSUMMARY</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=GETCONTENTSUMMARY"
@@ -207,7 +204,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /*
+    /**
      * <b>LISTSTATUS</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=LISTSTATUS"
@@ -235,7 +232,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /*
+    /**
      * <b>GETFILESTATUS</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=GETFILESTATUS"
@@ -262,7 +259,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /*
+    /**
      * <b>GETFILECHECKSUM</b>
      *
      * curl -i "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=GETFILECHECKSUM"
@@ -291,7 +288,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /*
+    /**
      * <b>CREATE</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=CREATE
@@ -350,7 +347,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /*
+    /**
      * <b>MKDIRS</b>
      *
      * curl -i -X PUT
@@ -380,7 +377,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /*
+    /**
      * <b>CREATESYMLINK</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/<PATH>?op=CREATESYMLINK
@@ -411,7 +408,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /*
+    /**
      * <b>RENAME</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/<PATH>?op=RENAME
@@ -442,7 +439,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /*
+    /**
      * <b>SETPERMISSION</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETPERMISSION
@@ -471,7 +468,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /*
+    /**
      * <b>SETOWNER</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETOWNER
@@ -500,7 +497,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /*
+    /**
      * <b>SETREPLICATION</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETREPLICATION
@@ -529,7 +526,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /*
+    /**
      * <b>SETTIMES</b>
      *
      * curl -i -X PUT "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=SETTIMES
@@ -558,7 +555,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /*
+    /**
      * curl -i -X POST
      * "http://<HOST>:<PORT>/webhdfs/v1/<PATH>?op=APPEND[&buffersize=<INT>]"
      *
@@ -611,7 +608,7 @@ public class KerberosWebHDFSConnection implements WebHDFSConnection {
         return resp;
     }
 
-    /*
+    /**
      * <b>DELETE</b>
      *
      * curl -i -X DELETE "http://<host>:<port>/webhdfs/v1/<path>?op=DELETE

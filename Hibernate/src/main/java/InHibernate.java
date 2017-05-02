@@ -3,6 +3,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class InHibernate {
+    // 主函数
     public static void main(String[] args) {
         String path = "hibernate.cfg.xml";
         Configuration cfg = new Configuration().configure(path);

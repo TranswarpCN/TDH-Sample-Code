@@ -27,14 +27,22 @@ public class LobUtil {
     private Configuration conf;
     private Constant constant;
 
-    // 构造函数
+    /**
+     * 构造函数
+     * @param admin HyperbaseAdmin
+     * @param conf 配置信息
+     */
     public LobUtil(HyperbaseAdmin admin, Configuration conf) {
         // TODO Auto-generated constructor stub
         this.admin = admin;
         this.conf = conf;
     }
 
-    // 创建Hyperbase表
+    /**
+     * 创建Hyperbase表
+     * @param tableName Hyperbase表名
+     * @param size Hyperbase flushsize大小
+     */
     public void createLobTable(String tableName, int size){
         flushSize = size;
         try {
@@ -112,7 +120,13 @@ public class LobUtil {
         }
     }
 
-    // 创建LOB Index
+    /**
+     * 创建LOB Index
+     * @param table Hyperbase表名
+     * @param indexdFamily index family名
+     * @param indexdQualifer index qualifer名
+     * @param LOBfamily LOB family名
+     */
     private void addLOB(TableName table, String indexdFamily, String indexdQualifer, String LOBfamily) {
         try {
             HyperbaseProtos.SecondaryIndex.Builder LOBbuilder =
@@ -132,7 +146,13 @@ public class LobUtil {
         }
     }
 
-    // 上传对象到LOB
+    /**
+     * 上传对象到LOB
+     * @param tableName Hyperbase表名
+     * @param row rowkey byte形式
+     * @param filename 文件名
+     * @param fileData 文件
+     */
     public void putLob(String tableName, String row, String filename, byte[] fileData){
         byte[] rowkey = Bytes.toBytes(row);
         try {

@@ -12,13 +12,21 @@ import org.xml.sax.SAXException;
 import java.io.*;
 
 public class Extractor {
-    // 获取文件夹
+    /**
+     * 获取文件夹
+     * @param path 文件夹名
+     * @return 文件列表
+     */
     private static File[] showFolder(String path) {
         File file = new File(path);
         return file.listFiles();
     }
 
-    // pdf, word 转化为 txt，输出格式为完整路径名 | 本文档第几段文本 | 本文档本段文本
+    /**
+     * pdf, word 转化为 txt，输出格式为完整路径名 | 本文档第几段文本 | 本文档本段文本
+     * @param curPath 输出到文件夹路径名
+     * @param fileName 文件名
+     */
     private static void extract(String curPath, String fileName) {
         InputStream is = null;
 

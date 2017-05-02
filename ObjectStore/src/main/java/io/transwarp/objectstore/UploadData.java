@@ -22,7 +22,9 @@ public class UploadData {
 
     DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
-    // 线程对象
+    /**
+     * 线程对象
+     */
     private class Task implements Runnable {
         int num;
         CopyOnWriteArrayList<String> fileList;
@@ -53,7 +55,9 @@ public class UploadData {
         }
     }
 
-    // 创建线程池，上传对象
+    /**
+     * 创建线程池，上传对象
+     */
     public void go() {
         connector = new Connector();
         constant = new Constant();
@@ -83,7 +87,11 @@ public class UploadData {
         connector.close();
     }
 
-    // 创建列表，将多个文件夹下文件以及子文件夹文件加入列表中
+    /**
+     * 创建列表，将多个文件夹下文件以及子文件夹文件加入列表中
+     * @param folders 需要上传文件的文件夹名
+     * @return 文件列表
+     */
     private static CopyOnWriteArrayList<String> addFiles(String[] folders) {
         CopyOnWriteArrayList<String> fileList = new CopyOnWriteArrayList<>();
         for (String folder : folders) {
@@ -102,7 +110,11 @@ public class UploadData {
         return fileList;
     }
 
-    // 辅助函数，读取子文件夹中文件
+    /**
+     * 辅助函数，读取子文件夹中文件
+     * @param root 文件夹名
+     * @param fileList 文件列表
+     */
     private static void recursion(String root, CopyOnWriteArrayList<String> fileList) {
         File file = new File(root);
         File[] subFile = file.listFiles();

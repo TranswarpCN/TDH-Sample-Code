@@ -29,7 +29,10 @@ public class SuperPut {
     private static AtomicInteger count = new AtomicInteger();
     private static int num;
 
-    // 将文件夹中文件添加到队列中
+    /**
+     * 将文件夹中文件添加到队列中
+     * @param folders 需要上传文件的文件夹集合
+     */
     public static void addFiles(String[] folders) {
         String[] file_types = constant.FILE_TYPE_FILTER.split(",");
         for (String folder : folders) {
@@ -57,7 +60,9 @@ public class SuperPut {
         }
     }
 
-    // SuperPut作为Daemon进程
+    /**
+     * SuperPut作为Daemon进程
+     */
     private static class TaskAsDaemon implements Runnable {
         int num;
         Configuration configuration;
@@ -69,7 +74,9 @@ public class SuperPut {
             this.hdfs_dir = hdfs_dir;
         }
 
-        // 线程逻辑，一旦发现目标文件夹中新增文件，就准备上传
+        /**
+         * 线程逻辑，一旦发现目标文件夹中新增文件，就准备上传
+         */
         @Override
         public void run() {
             while (true) {
@@ -133,7 +140,9 @@ public class SuperPut {
         }
     }
 
-    // SuperPut作为普通进程，一旦发现目标文件夹中新增文件，就准备上传
+    /**
+     * SuperPut作为普通进程，一旦发现目标文件夹中新增文件，就准备上传
+     */
     private static class TaskAsUser implements Runnable {
         int num;
         Configuration configuration;
@@ -145,7 +154,9 @@ public class SuperPut {
             this.hdfs_dir = hdfs_dir;
         }
 
-        // 线程逻辑，一旦发现目标文件夹中新增文件，就准备上传
+        /**
+         * 线程逻辑，一旦发现目标文件夹中新增文件，就准备上传
+         */
         @Override
         public void run() {
             while (blockingQueue.size() != 0) {
@@ -211,7 +222,10 @@ public class SuperPut {
         }
     }
 
-    // 负责监控目标文件夹是否有变化
+    /**
+     * 负责监控目标文件夹是否有变化
+     * @param option 1代表SuperPut为常驻进程（代表会一直监控目录），2代表SuperPut为普通进程（目录内文件上传完即程序结束）
+     */
     public static void go(int option) {
         if (option == 1) {
             hdfsProperties hdfsProperties = new hdfsProperties();

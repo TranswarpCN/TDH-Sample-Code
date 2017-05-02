@@ -43,7 +43,10 @@ public class LocalFileSource extends AbstractSource implements Configurable,Even
     // 文件后缀名 例如 .complete
     private String fileSuffix;
 
-    // 实现Configurable的configure方法，获取配置参数
+    /**
+     * 实现Configurable的configure方法，获取配置参数
+     * @param context Flume context
+     */
     public void configure(Context context) {
         this.localPath = context.getString("local.path");
         this.DELAY = Integer.parseInt(context.getInteger("delay", 10) + "");
@@ -71,7 +74,7 @@ public class LocalFileSource extends AbstractSource implements Configurable,Even
 
     }
 
-    /*
+    /**
      * 启动source 启动任务调度
      * 重写AbstractSource 的start方法
      */
@@ -86,7 +89,7 @@ public class LocalFileSource extends AbstractSource implements Configurable,Even
         super.start();
     }
 
-    /*
+    /**
      * 停止source 停止任务调度
      * 重写AbstractSource 的stop方法
      */

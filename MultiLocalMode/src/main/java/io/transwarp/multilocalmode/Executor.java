@@ -5,7 +5,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Executor {
-    // 执行SQL
+    /**
+     * 执行SQL
+     * @param connection JDBC连接
+     */
     public static void selectSQL(Connection connection) {
         try {
             Statement statement = connection.createStatement();

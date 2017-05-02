@@ -26,7 +26,18 @@ public class SearchAndReplaceAndFilterInterceptor implements Interceptor {
     private final String colSeparator;
     private final String index;
 
-    // 构造函数
+    /**
+     * 构造函数
+     * @param searchAndReplace 是否进行替换
+     * @param searchPattern 需要被替换的项，通过正则匹配
+     * @param replaceString 被替换成的字符
+     * @param charset 字符编码
+     * @param filterByRow 是否进行行过滤
+     * @param regex 行过滤正则匹配项
+     * @param filterByCol 是否进行列过滤
+     * @param colSeparator 列分隔符
+     * @param index 保留的列的下标，从1开始
+     */
     private SearchAndReplaceAndFilterInterceptor(boolean searchAndReplace,
                                                  Pattern searchPattern,
                                                  String replaceString,
@@ -57,7 +68,11 @@ public class SearchAndReplaceAndFilterInterceptor implements Interceptor {
 
     }
 
-    // 主要逻辑实现
+    /**
+     * 主要逻辑实现
+     * @param event Flume event，从Interceptor接口继承
+     * @return Flume event
+     */
     @Override
     public Event intercept(Event event) {
         if (filterByRow) {
@@ -152,7 +167,9 @@ public class SearchAndReplaceAndFilterInterceptor implements Interceptor {
         return out;
     }
 
-    // 定义相关flume常量
+    /**
+     * 定义相关flume常量
+     */
     public static class Builder implements Interceptor.Builder {
         private static final String SEARCH_AND_REPLACE_KEY = "searchAndReplace";
         private static final String SEARCH_PATTERN_KEY = "searchPattern";

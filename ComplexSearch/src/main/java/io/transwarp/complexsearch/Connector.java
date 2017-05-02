@@ -14,7 +14,10 @@ public class Connector {
         }
     }
 
-    // 创建Inceptor的JDBC连接
+    /**
+     * 创建Inceptor的JDBC连接
+     * @return JDBC连接
+     */
     public static Connection getConnection() {
         Connection connection = null;
         try {

@@ -3,7 +3,11 @@ package io.transwarp.complexsearch;
 import java.sql.*;
 
 public class Executor {
-    // 通过JDBC进行查询SQL
+    /**
+     * 通过JDBC进行查询SQL
+     * @param connection JDBC连接
+     * @param selectSQL 查询sql
+     */
     public static void complexSearchSQL(Connection connection, String selectSQL) {
         try {
             Statement statement = connection.createStatement();

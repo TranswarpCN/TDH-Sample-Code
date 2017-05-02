@@ -7,7 +7,9 @@ import java.util.Properties;
 public class kafkaProperties {
     private Properties properties = new Properties();
 
-    // 构造函数
+    /**
+     * 构造函数
+     */
     public kafkaProperties() {
         Constant constant = new Constant();
 

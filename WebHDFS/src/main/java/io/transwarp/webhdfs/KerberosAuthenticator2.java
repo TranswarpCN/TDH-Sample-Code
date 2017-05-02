@@ -59,7 +59,7 @@ public class KerberosAuthenticator2 implements Authenticator {
         this.servicePrincipal = servicePrincipal;
     }
 
-    /*
+    /**
      * Performs SPNEGO authentication against the specified URL.
      * <p/>
      * If a token is given it does a NOP and returns the given token.
@@ -67,15 +67,10 @@ public class KerberosAuthenticator2 implements Authenticator {
      * If no token is given, it will perform the SPNEGO authentication sequence
      * using an HTTP <code>OPTIONS</code> request.
      *
-     * @param url
-     *            the URl to authenticate against.
-     * @param token
-     *            the authentication token being used for the user.
-     *
-     * @throws IOException
-     *             if an IO error occurred.
-     * @throws AuthenticationException
-     *             if an authentication error occurred.
+     * @param url the URl to authenticate against.
+     * @param token the authentication token being used for the user.
+     * @throws IOException if an IO error occurred.
+     * @throws AuthenticationException if an authentication error occurred.
      */
     public void authenticate(URL url, AuthenticatedURL.Token token)
             throws IOException, AuthenticationException {
@@ -93,7 +88,7 @@ public class KerberosAuthenticator2 implements Authenticator {
         }
     }
 
-    /*
+    /**
      * If the specified URL does not support SPNEGO authentication, a fallback
      * {@link Authenticator} will be used.
      * <p/>
@@ -105,7 +100,7 @@ public class KerberosAuthenticator2 implements Authenticator {
         return new PseudoAuthenticator();
     }
 
-    /*
+    /**
      * Indicates if the response is starting a SPNEGO negotiation.
      */
     private boolean isNegotiate() throws IOException {
@@ -118,23 +113,20 @@ public class KerberosAuthenticator2 implements Authenticator {
         return negotiate;
     }
 
-    /*
+    /**
      * Implements the SPNEGO authentication sequence interaction using the
      * current default principal in the Kerberos cache (normally set via kinit).
      *
-     * @param token
-     *            the authentication token being used for the user.
+     * @param token the authentication token being used for the user.
      *
-     * @throws IOException
-     *             if an IO error occurred.
-     * @throws AuthenticationException
-     *             if an authentication error occurred.
+     * @throws IOException if an IO error occurred.
+     * @throws AuthenticationException if an authentication error occurred.
      */
     private void doSpnegoSequence(AuthenticatedURL.Token token)
             throws IOException, AuthenticationException {
         try {
 
-			/*
+			/**
 			 * // AccessControlContext context = AccessController.getContext();
 			 * Subject subject = Subject.getSubject(context); if (subject ==
 			 * null) { subject = new Subject(); LoginContext login = new
@@ -206,7 +198,7 @@ public class KerberosAuthenticator2 implements Authenticator {
         AuthenticatedURL.extractToken(conn, token);
     }
 
-    /*
+    /**
      * Sends the Kerberos token to the server.
      */
     private void sendToken(byte[] outToken) throws IOException,
@@ -218,7 +210,7 @@ public class KerberosAuthenticator2 implements Authenticator {
         conn.connect();
     }
 
-    /*
+    /**
      * Retrieves the Kerberos token returned by the server.
      */
     private byte[] readToken() throws IOException, AuthenticationException {

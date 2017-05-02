@@ -3,10 +3,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class JDBC_basic {
+public class jdbcBasic {
     private static String connection_url = "";
     private static Connection connection = null;
 
+    // 主函数
     public static void main(String[] args) {
         Constant constant = new Constant();
         try {

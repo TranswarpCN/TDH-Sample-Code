@@ -28,7 +28,9 @@ public class Constant {
     String THREAD_POOL_SIZE;
     String THREAD_NUM;
 
-    // 构造函数
+    /**
+     * 构造函数
+     */
     public Constant() {
         this.HBASE_TABLE_NAME = configuration.get("hbase_table_name");
         this.REGION_NUM = configuration.get("region_num");

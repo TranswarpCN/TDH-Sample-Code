@@ -20,26 +20,16 @@ import java.net.InetAddress;
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
 public class SearchES {
-    /*
-    create table es_start (key string,
-    fieldA string,
-    fieldB int)
-    stored as es;
-
-    create external table es_start_ex (
-    key string,
-    fieldA string,
-    fieldB int)
-    stored as es
-    TBLPROPERTIES('elasticsearch.tablename'='sqd.es_start');
-
-    insert into es_start_ex values ("1","A",2);
-    insert into es_start_ex values ("2","A",3);
-    insert into es_start_ex values ("3","B",13);
-    insert into es_start_ex values ("4","C",1);
-    */
-    // 获取ES表的某些字段的count,sum,avg,max值等,基于类似SQL的group by
-    // ES统计查询
+    /**
+     * 获取ES表的某些字段的count,sum,avg,max值等,基于类似SQL的group by
+     * 前置数据范例
+     * create table es_start(key string, fieldA string, fieldB int) stored as es;
+     * create external table es_start_ex(key string, fieldA string, fieldB int) stored as es TBLPROPERTIES('elasticsearch.tablename'='sqd.es_start');
+     * insert into es_start_ex values ("1","A",2);
+     * insert into es_start_ex values ("2","A",3);
+     * insert into es_start_ex values ("3","B",13);
+     * insert into es_start_ex values ("4","C",1);
+     */
     public static void statsQuery() {
         try {
             Settings settings = Settings.settingsBuilder().put("cluster.name", "elasticsearch1").build();
@@ -74,7 +64,9 @@ public class SearchES {
         }
     }
 
-    // wildcard查询/or条件/and条件
+    /**
+     * wildcard查询/or条件/and条件
+     */
     public static void wildcardQuery() {
         try {
             Settings settings = Settings.settingsBuilder().put("cluster.name", "elasticsearch1").build();
@@ -83,7 +75,7 @@ public class SearchES {
                     new InetSocketTransportAddress(InetAddress.getByName("172.16.2.94"), 9300));
             SearchRequestBuilder searchRequestBuilder = transportClient.prepareSearch("sqd.es_start");
 
-            //{"query": {"bool": {"must": [{"or": [{"wildcard": {"content": "*oracle*"}},{"wildcard": {"content": "*mysql*"}}]}],"must_not": [],"should": []}},"from": 0, "size": 10, "sort": [],"aggs": {}}
+            // {"query": {"bool": {"must": [{"or": [{"wildcard": {"content": "*oracle*"}},{"wildcard": {"content": "*mysql*"}}]}],"must_not": [],"should": []}},"from": 0, "size": 10, "sort": [],"aggs": {}}
             SearchResponse searchResponse = searchRequestBuilder.
                     setQuery(QueryBuilders.boolQuery()
                     .must(QueryBuilders.orQuery(QueryBuilders.wildcardQuery("content","*mysql*"),
@@ -103,7 +95,9 @@ public class SearchES {
         }
     }
 
-    // 多字段查询
+    /**
+     * 多字段查询
+     */
     public static void multisearch() {
         try {
             Settings settings = Settings.settingsBuilder().put("cluster.name", "elasticsearch1").build();
@@ -125,7 +119,9 @@ public class SearchES {
         }
     }
 
-    // json查询
+    /**
+     * json查询
+     */
     public static void jsonquery() {
         try {
             Settings settings = Settings.settingsBuilder().put("cluster.name", "elasticsearch1").build();
@@ -166,7 +162,9 @@ public class SearchES {
         }
     }
 
-    // 通过json创建index
+    /**
+     * 通过json创建index
+     */
     public static void createByJson() {
         try {
             Settings settings = Settings.settingsBuilder().put("cluster.name", "elasticsearch1").build();
@@ -202,6 +200,7 @@ public class SearchES {
         }
     }
 
+    // 主函数
     public static void main(String[] args) {
         multisearch();
         statsQuery();
