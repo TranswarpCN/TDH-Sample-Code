@@ -3,9 +3,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Created by Xiaolin on 2017/4/28.
- */
 public class JDBC_basic {
     private static String connection_url = "";
     private static Connection connection = null;

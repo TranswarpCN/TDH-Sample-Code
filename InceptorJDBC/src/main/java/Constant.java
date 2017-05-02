@@ -1,8 +1,5 @@
 import org.apache.hadoop.conf.Configuration;
 
-/**
- * Created by Xiaolin on 2017/4/28.
- */
 public class Constant {
     // 配置文件类，主要是conf.xml等
     private static Configuration configuration = new Configuration();

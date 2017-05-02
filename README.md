@@ -54,6 +54,10 @@ You can read the [user-guide.txt](https://github.com/Transwarp-DE/Transwarp-Samp
 
 - [x] Kerberos Support
 
+**InceptorJDBC.** Example for connect Inceptor via jdbc. 
+
+- [x] Kerberos Support
+
 **InceptorUDAF.** Example for Inceptor UDAF. 
 
 - [x] Kerberos Support

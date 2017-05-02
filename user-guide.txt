@@ -51,4 +51,6 @@
 18、 InceptorUDF/InceptorUDAF/InceptorUDTF
 将工程打成jar包，上传至集群，即可调用inceptor的自定义函数。
 19、 WebHDFS
-本来演示的Web HDFS的Java API操作。
+本例演示的是Web HDFS的Java API操作。
+20、InceptorJDBC
+本例演示的是通过jdbc连接Inceptor
