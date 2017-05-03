@@ -54,3 +54,5 @@
 本例演示的是Web HDFS的Java API操作。
 20、InceptorJDBC
 本例演示的是通过jdbc连接Inceptor
+21、KafkaPartitioner
+本例演示的是kafka partition

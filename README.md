@@ -78,6 +78,10 @@ You can read the [user-guide.txt](https://github.com/Transwarp-DE/Transwarp-Samp
 
 - [x] Kerberos Support
 
+**KafkaPartitioner.** Example for Kafka Partitioner. 
+
+- [x] Kerberos Support
+
 **KafkaProducer.** Example for Kafka Producer with multi-threading. 
 
 - [x] Kerberos Support
