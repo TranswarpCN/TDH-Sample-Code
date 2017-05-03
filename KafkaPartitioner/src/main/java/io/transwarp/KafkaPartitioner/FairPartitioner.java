@@ -14,7 +14,7 @@ public class FairPartitioner implements Partitioner {
      * 据此，将msg发送到对应的Paritition
      * @param _key key
      * @param partitions partition
-     * @return
+     * @return 取模
      */
     public int partition(Object _key, int partitions) {
         System.out.println("partitions is " + partitions);
