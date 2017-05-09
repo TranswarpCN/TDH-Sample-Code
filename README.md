@@ -94,7 +94,7 @@ You can read the [user-guide.txt](https://github.com/Transwarp-DE/Transwarp-Samp
 
 - [x] Kerberos Support
 
-**ObjectStore.** Example for storing non-text (such as image, video, etc) files in Hyperbase with with multi-threading. 
+**ObjectStore.** Example for storing non-text (such as image, video, etc) files in Hyperbase or HDFS with with multi-threading. 
 
 - [x] Kerberos Support
 

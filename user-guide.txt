@@ -32,7 +32,7 @@
 本例演示的是Hyperbase的高并发。
 配置/resources/setup.xml，配置README.txt中相关前置条件，运行SampleCode.java，即可运行Hyperbase的高并发操作，支持多线程查询。
 12、 ObjectStore
-本例演示的是Hyperbase的对象存储。
+本例演示的是Hyperbase或者HDFS的对象存储。
 配置/resources/setup.xml，配置README.txt中相关前置条件，运行UploadData.java与DownloadData.java，即可实现Hyperbase的对象存储，支持多线程存储下载。
 13、 rJava
 本例演示的是通过Scala/Java编写Discover的R语言函数。
