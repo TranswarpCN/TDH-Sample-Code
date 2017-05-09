@@ -28,10 +28,17 @@ public class DownloadData {
      * 获取文件
      * @param fileName 文件名
      */
-    public void getFile(String fileName) {
+    public int getFile(String fileName) {
         try {
             HTable hTable = new HTable(configuration, constant.HBASE_TABLE_NAME);
-            String fileNameMD5 = md5crypt(fileName);
+            String fileName2 = fileName;
+            if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+                fileName2 = constant.UPLOAD_DIR + "\\" + fileName;
+                System.out.println(fileName2);
+            } else {
+                fileName2 = constant.UPLOAD_DIR + "/" + fileName;
+            }
+            String fileNameMD5 = md5crypt(fileName2);
 
             String result_filename;
             byte[] result_filedata;
@@ -46,21 +53,24 @@ public class DownloadData {
             ResultScanner scanner = hTable.getScanner(scan);
             for (Result r : scanner) {
                 result_filename = Bytes.toString(r.getValue(Bytes.toBytes("file"), Bytes.toBytes("filename")));
-                if (fileName.compareTo(result_filename) == 0){
+                System.out.println(result_filename);
+                if (fileName2.compareTo(result_filename) == 0){
                     result_fileCount++;
                     result_filedata = r.getValue(Bytes.toBytes("data"), Bytes.toBytes("bytes"));
                     FileUtil.byte2File(result_filedata, constant.DOWNLOAD_DIR, fileName);
                 }
             }
-            if(result_fileCount != 0)
+            if (result_fileCount != 0)
                 System.out.println("Download "+ result_fileCount + " files");
             else
                 System.out.println("Not found:"+fileName);
 
             hTable.close();
+            return result_fileCount;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     // 关闭连接
@@ -70,9 +80,21 @@ public class DownloadData {
 
     // 主函数
     public static void main(String[] args) {
-        DownloadData downloadData = new DownloadData();
         // 下载时，更改文件名
-        downloadData.getFile("BearGlacierLake_ROW11778213520_1920x1200.jpg");
+        String fileName = "JR-0076(1).ai";
+        DownloadData downloadData = new DownloadData();
+        int k = downloadData.getFile(fileName);
         downloadData.disConnect();
+        if (k == 0) {
+            if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+                fileName = downloadData.constant.UPLOAD_DIR + "\\" + fileName;
+            } else {
+                fileName = downloadData.constant.UPLOAD_DIR + "/" + fileName;
+            }
+            String[] h = md5crypt(fileName).split("/");
+            String hdfsFile = downloadData.constant.HDFS_LARGE_FILE_DIR + "/" + h[h.length-1];
+            Downloader downloader = new Downloader(hdfsFile);
+            downloader.download(downloadData.constant.DOWNLOAD_DIR);
+        }
     }
 }

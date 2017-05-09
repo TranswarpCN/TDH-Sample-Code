@@ -1,4 +1,4 @@
-本例功能是通过Hyperbase的LOB Index进行对象存储
+本例功能是通过Hyperbase的LOB Index进行对象存储（大于10MB的文件会被存在HDFS上）
 
 1、从集群上拿core-site.xml,hbase-site.xml,hdfs-site.xml,hbase.keytab替换resources目录中的文件
 2、修改setup.xml中相关配置，此外从集群上拿krb5.conf，在Windows上放到C盘Windows目录，并改名krb5.ini

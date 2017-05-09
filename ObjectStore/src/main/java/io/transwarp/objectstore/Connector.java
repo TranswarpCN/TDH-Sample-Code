@@ -1,12 +1,16 @@
 package io.transwarp.objectstore;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.apache.hadoop.hyperbase.client.HyperbaseAdmin;
 import org.apache.hadoop.security.UserGroupInformation;
 
 import java.io.IOException;
+
+import static io.transwarp.objectstore.HDFSConnector.getHDFSConf;
 
 public class Connector {
 
@@ -31,6 +35,14 @@ public class Connector {
             }
             hBaseAdmin = new HBaseAdmin(configuration);
             hyperbaseAdmin = new HyperbaseAdmin(configuration);
+
+            Configuration hdfsConf = getHDFSConf();
+            String rootPath = "hdfs://nameservice1";
+            Path p = new Path(rootPath + constant.HDFS_LARGE_FILE_DIR);
+            FileSystem fs = p.getFileSystem(hdfsConf);
+            boolean b = fs.mkdirs(p);
+            System.out.println(b);
+            fs.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

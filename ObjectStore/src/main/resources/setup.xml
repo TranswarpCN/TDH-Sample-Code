@@ -4,7 +4,11 @@
 <configuration>
     <property>
         <name>hbase_table_name</name>
-        <value>picture53</value>
+        <value>picture58</value>
+    </property>
+    <property>
+        <name>hdfs_large_file_dir</name>
+        <value>/tmp/large_dir</value>
     </property>
     <property>
         <name>region_num</name>
@@ -12,7 +16,7 @@
     </property>
     <property>
         <name>mode</name>
-        <value>kerberos</value>
+        <value>simple</value>
         <!-- simple, kerbeos -->
     </property>
     <property>
@@ -37,12 +41,12 @@
     </property>
     <property>
         <name>upload_dir</name>
-        <value>/mnt/disk1/p</value>
+        <value>E:\星环\任务\2017年5月9日\pic</value>
         <!-- 已包含子文件夹，如多个目录，用 ; 分隔，注意Linux文件夹和Windows文件夹写法的区别 -->
     </property>
     <property>
         <name>download_dir</name>
-        <value>E:\星环\任务\2016年11月28日</value>
+        <value>E:\星环\任务\2017年5月9日</value>
     </property>
     <property>
         <name>flush_size</name>

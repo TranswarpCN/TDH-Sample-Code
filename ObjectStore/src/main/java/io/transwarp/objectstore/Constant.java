@@ -16,6 +16,7 @@ public class Constant {
 
     // 配置中常量
     String HBASE_TABLE_NAME;
+    String HDFS_LARGE_FILE_DIR;
     String REGION_NUM;
     String MODE;
     String KERBEROS_WITH_KEYTAB_USER;
@@ -33,6 +34,7 @@ public class Constant {
      */
     public Constant() {
         this.HBASE_TABLE_NAME = configuration.get("hbase_table_name");
+        this.HDFS_LARGE_FILE_DIR = configuration.get("hdfs_large_file_dir");
         this.REGION_NUM = configuration.get("region_num");
         this.MODE = configuration.get("mode");
         this.KERBEROS_WITH_KEYTAB_USER = configuration.get("kerberos_with_keytab_user");

@@ -1,9 +1,12 @@
 package io.transwarp.objectstore;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hyperbase.client.HyperbaseAdmin;
+import org.apache.hadoop.io.IOUtils;
 
-import java.io.File;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,6 +14,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static io.transwarp.objectstore.HDFSConnector.getHDFSConf;
 import static io.transwarp.objectstore.MD5Util.md5crypt;
 
 public class UploadData {
@@ -46,8 +50,21 @@ public class UploadData {
                     String rowkey = s0.split("\\|")[1];
                     String s = s0.split("\\|")[0];
                     byte[] fileData = FileUtil.file2Byte(new File(s));
-                    lobUtil.putLob(tableName, rowkey, s, fileData);
-                    System.out.println("Thread " + String.valueOf(num) + " is uploading " + s + " with rowkey " + rowkey + " with " + sdf.format(new Date()));
+                    if (fileData.length/1024 <= 10000){
+                        lobUtil.putLob(tableName, rowkey, s, fileData);
+                        System.out.println("Thread " + String.valueOf(num) + " is uploading "
+                                + s + " with rowkey " + rowkey + " with " + sdf.format(new Date()));
+                    } else {
+                        InputStream in = new BufferedInputStream(new FileInputStream(s));
+                        Path p = new Path(constant.HDFS_LARGE_FILE_DIR+"/"+rowkey);
+                        FileSystem fs = p.getFileSystem(getHDFSConf());
+                        OutputStream out = fs.create(p);
+                        IOUtils.copyBytes(in, out, getHDFSConf());
+                        fs.close();
+                        IOUtils.closeStream(in);
+                        System.out.println("Thread " + String.valueOf(num) + " is uploading "
+                                + s + " with rowkey " + rowkey + " with " + sdf.format(new Date()));
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
