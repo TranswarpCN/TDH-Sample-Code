@@ -7,6 +7,8 @@ import org.apache.hadoop.hbase.client.ResultScanner;
 import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.util.Bytes;
 
+import java.io.File;
+
 import static io.transwarp.objectstore.MD5Util.md5crypt;
 
 public class DownloadData {
@@ -82,19 +84,36 @@ public class DownloadData {
     public static void main(String[] args) {
         // 下载时，更改文件名
         String fileName = "JR-0076(1).ai";
+
         DownloadData downloadData = new DownloadData();
         int k = downloadData.getFile(fileName);
         downloadData.disConnect();
         if (k == 0) {
+            String fileName2 = "";
+            String fileName3 = "";
             if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+                fileName3 = downloadData.constant.DOWNLOAD_DIR + "\\" + fileName;
                 fileName = downloadData.constant.UPLOAD_DIR + "\\" + fileName;
             } else {
+                fileName3 = downloadData.constant.DOWNLOAD_DIR + "\\" + fileName;
                 fileName = downloadData.constant.UPLOAD_DIR + "/" + fileName;
             }
             String[] h = md5crypt(fileName).split("/");
             String hdfsFile = downloadData.constant.HDFS_LARGE_FILE_DIR + "/" + h[h.length-1];
             Downloader downloader = new Downloader(hdfsFile);
             downloader.download(downloadData.constant.DOWNLOAD_DIR);
+            if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+                fileName2 = downloadData.constant.DOWNLOAD_DIR + "\\" + h[h.length-1];
+            } else {
+                fileName2 = downloadData.constant.DOWNLOAD_DIR + "/" + h[h.length-1];
+            }
+            new File(fileName2).renameTo(new File(fileName));
+            System.out.println(fileName2);
+            System.out.println(fileName3);
+            File file1 = new File(fileName2);
+            File file2 = new File(fileName3);
+            boolean flag = file1.renameTo(file2);
+            System.out.println(flag);
         }
     }
 }
