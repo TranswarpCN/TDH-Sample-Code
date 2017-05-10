@@ -49,8 +49,12 @@ public class UploadData {
                     String s0 = fileList.remove(0);
                     String rowkey = s0.split("\\|")[1];
                     String s = s0.split("\\|")[0];
-                    byte[] fileData = FileUtil.file2Byte(new File(s));
-                    if (fileData.length/1024 <= 10000){
+
+                    File file = new File(s);
+                    long fileSizeInBytes = file.length();
+                    long fileSizeInKB = fileSizeInBytes / 1024;
+                    if (fileSizeInKB <= 10000){
+                        byte[] fileData = FileUtil.file2Byte(file);
                         lobUtil.putLob(tableName, rowkey, s, fileData);
                         System.out.println("Thread " + String.valueOf(num) + " is uploading "
                                 + s + " with rowkey " + rowkey + " with " + sdf.format(new Date()));
@@ -62,7 +66,6 @@ public class UploadData {
                         IOUtils.copyBytes(in, out, getHDFSConf());
                         fs.close();
                         IOUtils.closeStream(in);
-                        lobUtil.putLob(tableName, rowkey, s, p.toString().getBytes());
                         System.out.println("Thread " + String.valueOf(num) + " is uploading "
                                 + s + " with rowkey " + rowkey + " with " + sdf.format(new Date()));
                     }
