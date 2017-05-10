@@ -66,6 +66,7 @@ public class UploadData {
                         IOUtils.copyBytes(in, out, getHDFSConf());
                         fs.close();
                         IOUtils.closeStream(in);
+                        lobUtil.putLob(tableName, rowkey, s, p.toString().getBytes());
                         System.out.println("Thread " + String.valueOf(num) + " is uploading "
                                 + s + " with rowkey " + rowkey + " with " + sdf.format(new Date()));
                     }
